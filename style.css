@@ -1,0 +1,647 @@
+:root {
+    /* Colors */
+    --c-bg: #F8FAFC;
+    /* Light slate background */
+    --c-bg-glass: rgba(255, 255, 255, 0.7);
+    /* Light glassmorphism surface */
+    --c-border: rgba(255, 255, 255, 0.5);
+    /* Soft white borders */
+
+    --c-primary: #E11D48;
+    /* Vibrant Ruby */
+    --c-primary-light: #F43F5E;
+    --c-primary-glow: rgba(225, 29, 72, 0.4);
+
+    --c-text: #1E293B;
+    /* Dark slate text for high contrast */
+    --c-text-muted: #64748B;
+    /* Medium slate for subtitles */
+
+    --c-tag-bg: rgba(225, 29, 72, 0.1);
+    --c-tag-color: #E11D48;
+
+    /* Typography */
+    --f-heading: 'Outfit', 'Noto Sans TC', sans-serif;
+    --f-body: 'Noto Sans TC', sans-serif;
+
+    /* Spacing & Sizes */
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--f-body);
+    line-height: 1.6;
+    overflow: hidden;
+    /* We handle scrolling inside the slides container */
+}
+
+/* Background Gradients & Blobs for Aesthetic */
+.bg-gradient-mesh {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.1), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(88, 28, 135, 0.1), transparent 40%);
+    z-index: -2;
+    pointer-events: none;
+}
+
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.35;
+    /* Brighter, softer blobs */
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--c-primary);
+    top: 10%;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #FBBF24;
+    /* Warm amber instead of dark purple */
+    bottom: 20%;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--f-heading);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    font-size: 1.15rem;
+    color: var(--c-text);
+    margin-bottom: 0.2rem;
+}
+
+p {
+    color: var(--c-text-muted);
+}
+
+.highlight-text {
+    color: var(--c-primary-light);
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: var(--c-bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    /* Softer shadow for light mode */
+}
+
+/* Presentation Container */
+.presentation-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Slide Styles */
+.slide {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    padding: 4rem 2rem 6rem;
+    /* extra bottom padding for controls */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Hide scrollbar for aesthetics, but allow scrolling */
+.slide::-webkit-scrollbar {
+    width: 6px;
+}
+
+.slide::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.slide::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.slide:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    /* Vertically center content if smaller than screen */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hero Slide */
+.hero-content {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.info-card {
+    flex: 1;
+    min-width: 250px;
+    padding: 2rem;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.icon-wrapper {
+    background: var(--c-tag-bg);
+    color: var(--c-primary-light);
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--c-primary-light);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.info-text .value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--c-text);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.info-text .sub-value {
+    font-size: 0.9rem;
+    color: var(--c-text-muted);
+    line-height: 1.4;
+}
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    grid-auto-rows: 280px;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.bento-item {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-image: var(--bg-url);
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Softer shadow */
+}
+
+.bento-overlay {
+    position: absolute;
+    inset: 0;
+    /* Keeps images readable but blends better with light mode */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0.2) 60%, transparent);
+    z-index: 1;
+}
+
+.bento-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    /* Ensure text over images stays white */
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Daily Itinerary Timeline (per slide) */
+.day-header {
+    text-align: left;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--c-border);
+    padding-bottom: 1.5rem;
+}
+
+.day-header h2 {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.day-header .date-badge {
+    font-size: 1.2rem;
+    color: var(--c-primary-light);
+    font-weight: 500;
+}
+
+.daily-events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Reduced from 1.5rem for compactness */
+}
+
+.event-card {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    /* Changed from flex-start since content is now flat */
+    padding: 0.5rem 1rem;
+    /* Drastically reduced from 1rem 1.25rem */
+    transition: transform 0.2s, background 0.2s;
+    cursor: pointer;
+    /* added for interactivity */
+}
+
+.event-card:hover {
+    background: rgba(255, 255, 255, 0.8);
+    /* Brighter hover state */
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    /* Softer shadow on hover */
+}
+
+.time-col {
+    width: 90px;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--c-primary-light);
+    display: flex;
+    flex-direction: row;
+    /* Horizontal layout */
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.time-col .time-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-col i {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    width: 16px;
+    text-align: center;
+}
+
+.distance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--c-text-muted);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.distance-badge i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.event-sightseeing {
+    border-left: 4px solid var(--c-text-muted);
+}
+
+.event-sightseeing .time-col {
+    color: var(--c-text-muted);
+}
+
+/* Controls */
+.controls-container {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    /* Light glass controls */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.75rem 2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--c-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.05);
+    /* Light hover effect */
+    color: var(--c-primary);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.slide-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15);
+    /* Darker indicators for light mode */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.indicator.active {
+    background: var(--c-primary);
+    transform: scale(1.5);
+}
+
+/* Animations Triggered by Slide Change */
+.slide .content-wrapper>* {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide.active .content-wrapper>* {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger inner items */
+.slide.active .hero-cards,
+.slide.active .bento-grid,
+.slide.active .daily-events {
+    transition-delay: 0.2s;
+}
+
+/* Responsive constraints */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.5rem;
+    }
+
+    .time-col {
+        width: auto;
+        font-size: 0.9rem;
+    }
+
+    .day-header h2 {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .controls-container {
+        width: 90%;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Links & Buttons */
+.spot-link {
+    color: var(--c-text);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.spot-link i {
+    font-size: 0.75rem;
+    margin-left: 0.4rem;
+    color: var(--c-primary-light);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.spot-link:hover {
+    color: var(--c-primary);
+}
+
+.spot-link:hover i {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.route-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--c-bg-glass);
+    color: var(--c-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 1rem;
+    border: 1px solid var(--c-primary-glow);
+    transition: background 0.2s, transform 0.2s, color 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.route-btn:hover {
+    background: var(--c-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--c-primary-glow);
+}
+
+.inline-photo {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin: 0.8rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Split Layout for Full Itinerary */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    /* Make map column slightly wider proportionally */
+    gap: 2rem;
+    /* Removed align-items: start to let the right column stretch for position: sticky */
+}
+
+.itinerary-column {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+/* Hide scrollbar for itinerary column */
+.itinerary-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.itinerary-column::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.itinerary-column::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.itinerary-column:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 900px) {
+    .split-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .map-column {
+        display: none;
+        /* Hide map on small screens to save space, or move it to top */
+    }
+}
