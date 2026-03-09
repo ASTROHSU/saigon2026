@@ -509,38 +509,169 @@ p {
     transition-delay: 0.2s;
 }
 
-/* Responsive constraints */
+/* ─── Responsive: tablet (max 900px) ──────────────────────────── */
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: 250px;
     }
+
+    /* Itinerary: stack map below list on tablet */
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .map-column {
+        min-height: 320px;
+        position: static !important;
+    }
+
+    .itinerary-column {
+        max-height: none;
+        overflow-y: visible;
+    }
 }
 
-@media (max-width: 768px) {
-    .event-card {
+/* ─── Responsive: mobile (max 640px) ──────────────────────────── */
+@media (max-width: 640px) {
+
+    /* Slides */
+    .slide {
+        padding: 1rem 0;
+        overflow-y: auto;
+    }
+
+    .content-wrapper {
+        padding: 1.5rem 1rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Typography */
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+    }
+
+    /* Hero / Title slide */
+    .hero-dates {
+        font-size: 0.9rem;
+    }
+
+    /* Controls */
+    .controls-container {
+        width: 92%;
+        gap: 0.5rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .controls-container button {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    /* Boarding Pass — stack vertically */
+    .boarding-pass {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+
+    .bp-left,
+    .bp-right {
+        width: 100% !important;
+        border-radius: 16px !important;
+    }
+
+    .bp-tear {
+        width: 100% !important;
+        height: 2px !important;
+        flex-direction: row !important;
+    }
+
+    .bp-tear::before,
+    .bp-tear::after {
+        width: 20px !important;
+        height: 20px !important;
+        top: -10px !important;
+        left: auto !important;
+    }
+
+    .bp-route {
         flex-direction: column;
         gap: 0.5rem;
-        padding: 1.5rem;
+        align-items: center !important;
+    }
+
+    /* Accommodation — stack */
+    .split-layout[style*="1fr 1fr"],
+    .split-layout[style*="1100px"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Dining carousel cards */
+    .carousel-container {
+        padding: 0.5rem 1rem 1.5rem !important;
+    }
+
+    .bento-item {
+        flex: 0 0 85vw !important;
+    }
+
+    /* Itinerary */
+    .itinerary-column {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+    }
+
+    .map-column {
+        min-height: 280px;
+        position: static !important;
+        order: -1;
+        /* Show map above the list on mobile */
+    }
+
+    .event-card {
+        flex-direction: column;
+        gap: 0.3rem;
+        padding: 1rem;
     }
 
     .time-col {
         width: auto;
-        font-size: 0.9rem;
+        flex-direction: row;
+        gap: 0.5rem;
     }
 
-    .day-header h2 {
-        flex-direction: column;
-        gap: 0.2rem;
+    .day-title {
+        font-size: 1rem !important;
     }
 
-    .controls-container {
-        width: 90%;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.75rem 1rem;
+    /* Budget — full width cards */
+    .split-layout div[style*="800px"] {
+        max-width: 100% !important;
+    }
+
+    /* General glass cards */
+    .glass-card {
+        border-radius: 14px;
+    }
+
+    /* Indicators */
+    .indicator {
+        width: 7px;
+        height: 7px;
     }
 }
+
 
 /* Links & Buttons */
 .spot-link {
