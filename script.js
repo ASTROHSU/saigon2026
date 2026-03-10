@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'day-2-list': 'https://www.google.com/maps/dir/Signature+by+M+Village+Hai+Ba+Trung,+HCMC/The+Cafe+Apartment,+HCMC/Ho+Chi+Minh+City+Opera+House,+HCMC/Pizza+4Ps+Le+Thanh+Ton,+HCMC/Miu+Miu+Spa,+HCMC',
         'day-3-list': 'https://www.google.com/maps/dir/Tan+Dinh+Church,+HCMC/Cocotte+Restaurant,+HCMC/Saigon+Zoo+and+Botanical+Gardens,+HCMC/Miu+Miu+Spa+97+Vo+Van+Tan,+HCMC/Sol+Kitchen+Bar,+HCMC',
         'day-4-list': 'https://www.google.com/maps/dir/Signature+by+M+Village+Hai+Ba+Trung,+HCMC/War+Remnants+Museum,+HCMC/Ben+Thanh+Market,+HCMC/Nguyen+Hue+Walking+Street,+HCMC',
-        'day-5-list': 'https://www.google.com/maps/dir/Signature+by+M+Village+Hai+Ba+Trung,+HCMC/Banh+Mi+Huynh+Hoa,+HCMC/Tan+Son+Nhat+International+Airport,+HCMC'
+        'day-5-list': 'https://www.google.com/maps/dir/Signature+by+M+Village+Hai+Ba+Trung,+HCMC/Banh+Mi+Hong+Hoa,+HCMC/Tan+Son+Nhat+International+Airport,+HCMC'
     };
 
     // Inject a "🗺️ 開啟路線" button into each day title
