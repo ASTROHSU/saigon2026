@@ -283,16 +283,47 @@
                         </ul>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div class="glass-card"
-                            style="padding: 0; border-radius: 16px; overflow: hidden; height: 220px;">
-                            <img src="https://l.urusai.cc/VGMW2.png" alt="Signature by M Village 房間"
-                                style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                        <!-- Hotel Key Card -->
+                        <div class="hotel-key-card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem;">
+                                <div>
+                                    <div style="font-size: 0.58rem; letter-spacing: 0.3em; opacity: 0.5; text-transform: uppercase;">Boutique Hotel · Ho Chi Minh City</div>
+                                    <div style="font-size: 1.25rem; font-weight: 900; letter-spacing: 0.1em; margin-top: 0.2rem;">SIGNATURE</div>
+                                    <div style="font-size: 0.6rem; letter-spacing: 0.22em; opacity: 0.55; font-weight: 500;">BY M VILLAGE</div>
+                                </div>
+                                <div class="key-card-chip"></div>
+                            </div>
+                            <div style="margin-bottom: 0.5rem;">
+                                <div style="font-size: 0.58rem; opacity: 0.45; letter-spacing: 0.18em; margin-bottom: 0.2rem;">GUEST</div>
+                                <div style="font-size: 0.88rem; font-weight: 700; letter-spacing: 0.06em;">HSU MINGEN &amp; SYU FANGYI</div>
+                            </div>
+                            <div style="display: flex; gap: 1.8rem; padding-bottom: 2.2rem;">
+                                <div>
+                                    <div style="font-size: 0.55rem; opacity: 0.45; letter-spacing: 0.14em;">CHECK-IN</div>
+                                    <div style="font-size: 0.82rem; font-weight: 700;">29 MAR 2026</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.55rem; opacity: 0.45; letter-spacing: 0.14em;">CHECK-OUT</div>
+                                    <div style="font-size: 0.82rem; font-weight: 700;">02 APR 2026</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.55rem; opacity: 0.45; letter-spacing: 0.14em;">NIGHTS</div>
+                                    <div style="font-size: 0.82rem; font-weight: 700;">4 nights</div>
+                                </div>
+                            </div>
+                            <div class="key-card-stripe"></div>
                         </div>
-                        <div class="glass-card"
-                            style="padding: 0; border-radius: 16px; overflow: hidden; height: 220px;">
-                            <img src="https://l.urusai.cc/qdPcb.png" alt="Signature by M Village 泳池外觀"
-                                style="width: 100%; height: 100%; object-fit: cover;">
+                        <!-- Two photos below the card -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                            <div style="border-radius: 10px; overflow: hidden; height: 130px;">
+                                <img src="https://l.urusai.cc/VGMW2.png" alt="Signature by M Village 房間"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div style="border-radius: 10px; overflow: hidden; height: 130px;">
+                                <img src="https://l.urusai.cc/qdPcb.png" alt="Signature by M Village 泳池外觀"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -307,73 +338,63 @@
                     <p>左右滑動查看為妳預訂的重點大餐，極致的味蕾享受</p>
                 </div>
 
-                <!-- Horizontal Carousel Container -->
+                <!-- Horizontal Carousel Container — Menu Style -->
                 <div class="carousel-container"
                     style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.5rem; padding: 1rem 5vw 2rem 5vw; width: 100vw; -webkit-overflow-scrolling: touch;">
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: #eee; margin-bottom: 1rem;">
+                    <div class="bento-item menu-page"
+                        style="flex: 0 0 300px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1.2rem; border-radius: 16px;">
+                        <div class="menu-photo"
+                            style="width: 100%; border-radius: 8px; overflow: hidden; background: #e8e0d0; margin-bottom: 1rem;">
                             <img src="https://i.urusai.cc/bduE9.png" alt="Le Corto Sunday Brunch"
                                 style="width: 100%; height: auto; object-fit: contain; aspect-ratio: 4/3; display: block;">
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">法式奢華早午餐</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">Le Corto Sunday Brunch</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                抵達第一天的華麗開場！總統級主廚法式吃到飽早午餐，生蠔與精緻法餐的完美結合。</p>
+                        <div style="padding: 0 0.2rem;">
+                            <span class="menu-tag">法式奢華早午餐</span>
+                            <h3 class="menu-title">Le Corto Sunday Brunch</h3>
+                            <p class="menu-desc">抵達第一天的華麗開場！總統級主廚法式吃到飽早午餐，生蠔與精緻法餐的完美結合。</p>
                         </div>
                     </div>
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: #eee; margin-bottom: 1rem;">
+                    <div class="bento-item menu-page"
+                        style="flex: 0 0 300px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1.2rem; border-radius: 16px;">
+                        <div class="menu-photo"
+                            style="width: 100%; border-radius: 8px; overflow: hidden; background: #e8e0d0; margin-bottom: 1rem;">
                             <img src="https://i.urusai.cc/kRRKQ.png" alt="Pizza 4P's"
                                 style="width: 100%; height: auto; object-fit: contain; aspect-ratio: 4/3; display: block;">
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">傳奇窯烤披薩</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">Pizza 4P's</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                日本職人經營，隱藏巷弄的極致美味。必吃自製布拉塔起司生火腿披薩，體驗亞洲最強披薩。</p>
+                        <div style="padding: 0 0.2rem;">
+                            <span class="menu-tag">傳奇窯烤披薩</span>
+                            <h3 class="menu-title">Pizza 4P's</h3>
+                            <p class="menu-desc">日本職人經營，隱藏巷弄的極致美味。必吃自製布拉塔起司生火腿披薩，體驗亞洲最強披薩。</p>
                         </div>
                     </div>
 
-                    <!-- NEW ITEM instead of Vinh Khanh -->
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: #eee; margin-bottom: 1rem;">
+                    <div class="bento-item menu-page"
+                        style="flex: 0 0 300px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1.2rem; border-radius: 16px;">
+                        <div class="menu-photo"
+                            style="width: 100%; border-radius: 8px; overflow: hidden; background: #e8e0d0; margin-bottom: 1rem;">
                             <img src="https://i.urusai.cc/Y6kfM.png" alt="Bánh Mì Huỳnh Hoa"
                                 style="width: 100%; height: auto; object-fit: contain; aspect-ratio: 4/3; display: block;">
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">知名越式法國麵包</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">Bánh Mì Huỳnh Hoa</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                胡志明市最知名的法國麵包排隊名店！香酥法國麵包夾著滿滿的紮實火腿肉凍與特製肝醬。</p>
+                        <div style="padding: 0 0.2rem;">
+                            <span class="menu-tag">越式法國麵包</span>
+                            <h3 class="menu-title">Bánh Mì Huỳnh Hoa</h3>
+                            <p class="menu-desc">胡志明市最知名的法國麵包排隊名店！香酥法國麵包夾著滿滿的紮實火腿肉凍與特製肝醬。</p>
                         </div>
                     </div>
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: #eee; margin-bottom: 1rem;">
+                    <div class="bento-item menu-page"
+                        style="flex: 0 0 300px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1.2rem; border-radius: 16px;">
+                        <div class="menu-photo"
+                            style="width: 100%; border-radius: 8px; overflow: hidden; background: #e8e0d0; margin-bottom: 1rem;">
                             <img src="https://l.urusai.cc/2vCOE.png" alt="Cocotte 法式餐酒館"
                                 style="width: 100%; height: auto; object-fit: contain; aspect-ratio: 4/3; display: block;">
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">高
-                                CP 法國小館</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">Cocotte 法式餐酒館</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                重溫記憶中的味道！隱身檳城市場旁，必點經典油封鴨腿與洋蔥湯，享受道地氛圍。</p>
+                        <div style="padding: 0 0.2rem;">
+                            <span class="menu-tag">高 CP 法國小館</span>
+                            <h3 class="menu-title">Cocotte 法式餐酒館</h3>
+                            <p class="menu-desc">重溫記憶中的味道！隱身檳城市場旁，必點經典油封鴨腿與洋蔥湯，享受道地氛圍。</p>
                         </div>
                     </div>
 
@@ -389,61 +410,64 @@
                     <p>左右滑動深度感受西貢的歷史魅力與放鬆日常</p>
                 </div>
 
-                <!-- Horizontal Carousel Container -->
+                <!-- Horizontal Carousel Container — Ticket Style -->
                 <div class="carousel-container"
                     style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.5rem; padding: 1rem 5vw 2rem 5vw; width: 100vw; -webkit-overflow-scrolling: touch;">
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.05); border: 2px dashed var(--c-border); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; aspect-ratio: 4/3;">
-                            <div style="text-align: center; color: var(--c-text-muted); opacity: 0.6;">
-                                <i class="fa-solid fa-camera" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                                <div style="font-size: 0.8rem;">請在此放入真實照片</div>
+                    <!-- Ticket 1: 百年法式建築群 -->
+                    <div class="activity-ticket">
+                        <div class="ticket-main">
+                            <div style="font-size: 2rem; margin-bottom: 0.3rem;">🏛️</div>
+                            <span class="ticket-tag">網美地標</span>
+                            <h3 class="ticket-title">百年法式建築群</h3>
+                            <p class="ticket-desc">散步於綠意盎然的街道，欣賞夢幻粉紅教堂、壯麗聖母院及百年郵政局的建築之美。</p>
+                            <div class="ticket-date">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                3/29 – 4/2 · Ho Chi Minh City
                             </div>
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">網美地標</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">百年法式建築群</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                散步於綠意盎然的街道，欣賞夢幻粉紅教堂、壯麗聖母院及百年郵政局的建築之美。</p>
+                        <div class="ticket-stub">
+                            <span class="stub-label">Sightseeing</span>
+                            <i class="fa-solid fa-landmark stub-icon"></i>
+                            <span class="stub-label">Admit Two</span>
                         </div>
                     </div>
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.05); border: 2px dashed var(--c-border); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; aspect-ratio: 4/3;">
-                            <div style="text-align: center; color: var(--c-text-muted); opacity: 0.6;">
-                                <i class="fa-solid fa-camera" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                                <div style="font-size: 0.8rem;">請在此放入真實照片</div>
+                    <!-- Ticket 2: Miu Miu Spa -->
+                    <div class="activity-ticket">
+                        <div class="ticket-main">
+                            <div style="font-size: 2rem; margin-bottom: 0.3rem;">💆</div>
+                            <span class="ticket-tag">舒壓首選</span>
+                            <h3 class="ticket-title">Miu Miu Spa 頂級按摩</h3>
+                            <p class="ticket-desc">連續三天安排不同的放鬆療程！從日式指壓到精油按摩，徹底洗滌身心疲憊。</p>
+                            <div class="ticket-date">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Day 1 · 2 · 3 · Vo Van Tan
                             </div>
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">舒壓首選</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">Miu Miu Spa 頂級按摩</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                連續三天安排不同的放鬆療程！從日式指壓到精油按摩，徹底洗滌身心疲憊。</p>
+                        <div class="ticket-stub">
+                            <span class="stub-label">Wellness</span>
+                            <i class="fa-solid fa-spa stub-icon"></i>
+                            <span class="stub-label">Admit Two</span>
                         </div>
                     </div>
 
-                    <div class="bento-item glass-card"
-                        style="flex: 0 0 320px; scroll-snap-align: center; display: flex; flex-direction: column; padding: 1rem; border-radius: 16px; background: white;">
-                        <div
-                            style="width: 100%; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.05); border: 2px dashed var(--c-border); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; aspect-ratio: 4/3;">
-                            <div style="text-align: center; color: var(--c-text-muted); opacity: 0.6;">
-                                <i class="fa-solid fa-camera" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
-                                <div style="font-size: 0.8rem;">請在此放入真實照片</div>
+                    <!-- Ticket 3: 高空酒吧與步行街 -->
+                    <div class="activity-ticket">
+                        <div class="ticket-main">
+                            <div style="font-size: 2rem; margin-bottom: 0.3rem;">🌆</div>
+                            <span class="ticket-tag">越夜越美麗</span>
+                            <h3 class="ticket-title">高空酒吧與步行街</h3>
+                            <p class="ticket-desc">穿梭於九層樓的文創咖啡公寓，晚上前往 Blank Lounge 俯瞰繁華浪漫的西貢夜景。</p>
+                            <div class="ticket-date">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Day 2 · Nguyen Hue Walking St.
                             </div>
                         </div>
-                        <div style="color: var(--c-text); padding: 0 0.5rem;">
-                            <span
-                                style="display: inline-block; background: var(--c-tag-bg); color: var(--c-primary); font-size: 0.75rem; font-weight: bold; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem;">越夜越美麗</span>
-                            <h3 style="color: var(--c-primary-light); font-size: 1.3rem;">高空酒吧與步行街</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.5; color: var(--c-text-muted);">
-                                穿梭於九層樓的文創咖啡公寓，晚上前往 Blank Lounge 俯瞰繁華浪漫的西貢夜景。</p>
+                        <div class="ticket-stub">
+                            <span class="stub-label">Nightlife</span>
+                            <i class="fa-solid fa-martini-glass stub-icon"></i>
+                            <span class="stub-label">Admit Two</span>
                         </div>
                     </div>
 

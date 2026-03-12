@@ -777,3 +777,229 @@ p {
         /* Hide map on small screens to save space, or move it to top */
     }
 }
+
+/* ─── Hotel Key Card ───────────────────────────────────────── */
+.hotel-key-card {
+    width: 100%;
+    aspect-ratio: 85.6 / 54;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 55%, #2c5364 100%);
+    border-radius: 14px;
+    padding: 1.3rem 1.5rem 0;
+    color: white;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    transform: rotate(-1.5deg);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.hotel-key-card:hover {
+    transform: rotate(0deg) scale(1.02);
+    box-shadow: 0 28px 65px rgba(0, 0, 0, 0.55);
+}
+
+.hotel-key-card::before {
+    content: '';
+    position: absolute;
+    top: -35%;
+    right: -5%;
+    width: 210px;
+    height: 210px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 65%);
+    pointer-events: none;
+}
+
+.key-card-chip {
+    width: 36px;
+    height: 28px;
+    background: linear-gradient(135deg, #c8a84b, #f0d48a, #c8a84b);
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.key-card-chip::after {
+    content: '';
+    width: 24px;
+    height: 18px;
+    border: 1px solid rgba(150, 110, 30, 0.6);
+    border-radius: 3px;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(150, 110, 30, 0.15) 0px,
+        rgba(150, 110, 30, 0.15) 3px,
+        transparent 3px,
+        transparent 6px
+    );
+}
+
+.key-card-stripe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 0 0 14px 14px;
+    background-image: repeating-linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.06) 0px,
+        rgba(255, 255, 255, 0.06) 3px,
+        transparent 3px,
+        transparent 6px
+    );
+}
+
+/* ─── Menu Card ────────────────────────────────────────────── */
+.menu-page {
+    background: #FFFCF0 !important;
+    border: 1px solid rgba(180, 140, 60, 0.35) !important;
+    box-shadow: 0 2px 16px rgba(180, 140, 60, 0.1),
+        inset 0 0 0 5px rgba(180, 140, 60, 0.04) !important;
+}
+
+.menu-page .menu-photo {
+    border: 1px solid rgba(180, 140, 60, 0.2);
+}
+
+.menu-page .menu-tag {
+    display: inline-block;
+    background: transparent !important;
+    color: #9a7238 !important;
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.6rem !important;
+    border-radius: 0 !important;
+    border: 1px solid #d4af7a !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.5rem;
+}
+
+.menu-page .menu-title {
+    color: #4a3520 !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    font-size: 1.25rem !important;
+}
+
+.menu-page .menu-desc {
+    color: #6b5640 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    border-top: 1px solid rgba(180, 140, 60, 0.25);
+    padding-top: 0.6rem;
+    margin-top: 0.3rem;
+}
+
+/* ─── Activity Ticket ──────────────────────────────────────── */
+.activity-ticket {
+    flex: 0 0 320px !important;
+    scroll-snap-align: center;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white !important;
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.ticket-main {
+    flex: 1;
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ticket-stub {
+    width: 62px;
+    flex-shrink: 0;
+    background: var(--c-tag-bg);
+    border-left: 2px dashed rgba(225, 29, 72, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.4rem;
+    position: relative;
+}
+
+/* Circular notches at top and bottom of perforation */
+.ticket-stub::before,
+.ticket-stub::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--c-bg);
+    border-radius: 50%;
+    left: -9px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-stub::before { top: -9px; }
+.ticket-stub::after  { bottom: -9px; }
+
+.stub-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--c-primary);
+    text-transform: uppercase;
+}
+
+.stub-icon {
+    font-size: 1.1rem;
+    color: var(--c-primary-light);
+}
+
+.ticket-tag {
+    display: inline-block;
+    background: var(--c-tag-bg);
+    color: var(--c-primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+}
+
+.ticket-title {
+    color: var(--c-text);
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.ticket-desc {
+    color: var(--c-text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.ticket-date {
+    font-size: 0.72rem;
+    color: var(--c-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--c-border);
+}
+
+@media (max-width: 640px) {
+    .hotel-key-card {
+        transform: rotate(0deg);
+    }
+    .activity-ticket {
+        flex: 0 0 85vw !important;
+    }
+}
