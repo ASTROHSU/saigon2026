@@ -20,6 +20,7 @@
             --c-primary: #E11D48;
             --c-primary-light: #F43F5E;
             --c-success: #10B981;
+            --c-warning: #F59E0B;
             --c-text: #1F2937;
             --c-text-muted: #6B7280;
             --c-border: #E5E7EB;
@@ -212,6 +213,107 @@
             transform: translateY(-2px);
         }
 
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 0.75rem;
+        }
+
+        .badge-booked {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--c-success);
+        }
+
+        .badge-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--c-warning);
+        }
+
+        /* Todo Checklist Section */
+        .todo-section {
+            background: var(--c-glass);
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .todo-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .todo-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--c-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .todo-item:hover {
+            background: var(--c-bg-light);
+            border-color: var(--c-primary);
+        }
+
+        .todo-checkbox {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--c-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            margin-top: 0.1rem;
+        }
+
+        .todo-item:hover .todo-checkbox {
+            border-color: var(--c-primary);
+        }
+
+        .todo-item.completed .todo-checkbox {
+            background: var(--c-success);
+            border-color: var(--c-success);
+            color: white;
+        }
+
+        .todo-item.completed .todo-text {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .todo-text {
+            flex: 1;
+            color: var(--c-text);
+            font-size: 0.95rem;
+        }
+
         /* Flight Cards */
         .flight-card {
             margin-bottom: 1.5rem;
@@ -373,9 +475,73 @@
             border-bottom: none;
         }
 
+        /* Coffee Shops Section */
+        .coffee-section {
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.05) 0%, rgba(244, 63, 94, 0.03) 100%);
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .coffee-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .coffee-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .coffee-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .coffee-card {
+            background: white;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            transition: var(--transition);
+        }
+
+        .coffee-card:hover {
+            border-color: var(--c-primary);
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.08);
+        }
+
+        .coffee-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .coffee-card p {
+            font-size: 0.9rem;
+            color: var(--c-text-muted);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .coffee-address {
+            font-size: 0.85rem;
+            color: var(--c-primary);
+            font-weight: 600;
+        }
+
         /* Day Sections */
         .day-section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             scroll-margin-top: 100px;
         }
 
@@ -385,126 +551,26 @@
             padding: 1.5rem;
             border-radius: var(--radius);
             margin-bottom: 2rem;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .day-header:hover {
+            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.2);
+            transform: translateY(-2px);
         }
 
         .day-header h2 {
             font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             font-family: 'Outfit', sans-serif;
         }
 
         .day-header p {
             opacity: 0.9;
             font-size: 0.95rem;
-        }
-
-        .events-container {
-            position: relative;
-            padding-left: 0;
-        }
-
-        .event-card {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            animation: slideIn 0.5s ease-out forwards;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .event-time {
-            flex-shrink: 0;
-            width: 80px;
-            text-align: center;
-        }
-
-        .event-time-value {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--c-primary);
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .event-time-label {
-            font-size: 0.75rem;
-            color: var(--c-text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .event-content {
-            flex: 1;
-            background: var(--c-glass);
-            border: 1px solid var(--c-border);
-            border-radius: var(--radius);
-            padding: 1.25rem;
-            border-left: 4px solid var(--c-primary);
-            transition: var(--transition);
-        }
-
-        .event-content:hover {
-            border-color: var(--c-primary);
-            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .event-content h4 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--c-text);
-            margin-bottom: 0.5rem;
-        }
-
-        .event-content a {
-            color: var(--c-primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .event-content a:hover {
-            color: var(--c-primary-light);
-        }
-
-        .event-description {
-            color: var(--c-text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .event-distance {
-            display: inline-block;
-            background: rgba(225, 29, 72, 0.1);
-            color: var(--c-primary);
-            padding: 0.4rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .event-booked {
-            border-left-color: var(--c-success);
-        }
-
-        .event-booked .event-time-value {
-            color: var(--c-success);
-        }
-
-        /* Collapsible Day Sections */
-        .day-section.collapsed .events-container {
-            display: none;
-        }
-
-        .day-header {
-            cursor: pointer;
-            position: relative;
+            margin: 0;
         }
 
         .day-header::after {
@@ -521,6 +587,106 @@
 
         .day-section.collapsed .day-header::after {
             transform: translateY(-50%) rotate(-180deg);
+        }
+
+        .events-container {
+            position: relative;
+            padding-left: 0;
+        }
+
+        .day-section.collapsed .events-container {
+            display: none;
+        }
+
+        /* Activity Cards */
+        .activity-card {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .activity-card:hover {
+            border-color: var(--c-primary);
+            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.1);
+        }
+
+        .activity-time {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .activity-time-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--c-primary);
+            font-family: 'Outfit', sans-serif;
+            min-width: 70px;
+        }
+
+        .activity-booked .activity-time-value {
+            color: var(--c-success);
+        }
+
+        .activity-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-description {
+            color: var(--c-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .activity-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .activity-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--c-text-muted);
+        }
+
+        .activity-location a {
+            color: var(--c-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .activity-location a:hover {
+            color: var(--c-primary-light);
+        }
+
+        /* Free Time Block */
+        .free-time-block {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--c-bg-light);
+            border-left: 4px solid rgba(225, 29, 72, 0.3);
+            border-radius: var(--radius-sm);
+            font-style: italic;
+            color: var(--c-text-muted);
+        }
+
+        .free-time-block strong {
+            color: var(--c-text);
+            font-style: normal;
+            font-weight: 600;
         }
 
         /* Closing Message */
@@ -576,17 +742,18 @@
                 flex-direction: column;
             }
 
-            .event-card {
-                gap: 1rem;
-            }
-
-            .event-time {
-                width: 60px;
+            .activity-meta {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
             .day-tabs {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
+            }
+
+            .coffee-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -617,7 +784,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <h1>2026 越南胡志明蜜月旅行 🇻🇳</h1>
-            <p>五天四夜的浪漫越南之旅</p>
+            <p>五天四夜的放鬆越南之旅 — 悠閒漫步、精品咖啡、在地美食</p>
             <div class="trip-info">
                 <div class="info-card">
                     <strong>旅客</strong>
@@ -631,18 +798,69 @@
                     <strong>城市</strong>
                     <span>胡志明市</span>
                 </div>
+                <div class="info-card">
+                    <strong>住宿</strong>
+                    <span>Signature by M Village, District 3</span>
+                </div>
             </div>
+        </section>
+
+        <!-- Todo Checklist Section -->
+        <section class="todo-section">
+            <h3><i class="fas fa-tasks"></i> 待辦事項</h3>
+            <ul class="todo-list">
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 2 Saigon Coffee Roastery 訂位（11:00）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 2 Miu Miu Spa 晚餐前預約時段</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 3 The Workshop Coffee 確認營業時間（11:00）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 3 晚餐選擇（Cocotte 法式小館 或 Phở Phượng 河粉）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 4 Bosgaurus Coffee Roasters 確認預訂（10:00）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 4 午餐 / 晚餐地點確認</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Day 5 最後一餐 Bánh Mì Hồng Hoa 或確認替代方案</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">越南 eSIM 或 WiFi 分享器（機場或出發前購買）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">換越南盾 VND（約 30,000 元台幣 = 15M+ VND）</div>
+                </li>
+                <li class="todo-item">
+                    <div class="todo-checkbox">☐</div>
+                    <div class="todo-text">Grab 下載與設定（綁定支付方式）</div>
+                </li>
+            </ul>
         </section>
 
         <!-- Flights Section -->
         <section id="flights">
             <h2 class="section-title"><i class="fas fa-plane"></i> 航班資訊</h2>
-            <p class="section-subtitle">星宇航空 - 舒適開啟蜜月之旅</p>
+            <p class="section-subtitle">星宇航空 — 舒適開啟蜜月之旅</p>
 
             <!-- Outbound Flight -->
             <div class="glass-card flight-card">
                 <div class="flight-header">
-                    <span><i class="fas fa-plane"></i> 星宇航空 JX 711 - 去程</span>
+                    <span><i class="fas fa-plane"></i> 星宇航空 JX 711 — 去程</span>
                     <span>2026年03月29日 (週日)</span>
                 </div>
                 <div class="flight-content">
@@ -683,7 +901,7 @@
             <!-- Return Flight -->
             <div class="glass-card flight-card">
                 <div class="flight-header" style="background: linear-gradient(135deg, var(--c-primary-light) 0%, #EC4899 100%);">
-                    <span><i class="fas fa-plane fa-rotate-180"></i> 星宇航空 JX 714 - 回程</span>
+                    <span><i class="fas fa-plane fa-rotate-180"></i> 星宇航空 JX 714 — 回程</span>
                     <span>2026年04月02日 (週四)</span>
                 </div>
                 <div class="flight-content">
@@ -725,35 +943,90 @@
         <!-- Accommodation Section -->
         <section id="accommodation">
             <h2 class="section-title"><i class="fas fa-hotel"></i> 住宿地點</h2>
-            <p class="section-subtitle">Signature by M Village — 海霸王街</p>
+            <p class="section-subtitle">Signature by M Village — 海霸王街（第三郡）</p>
 
             <div class="accommodation-grid">
                 <div>
                     <div class="hotel-images">
-                        <img src="https://l.urusai.cc/VGMW2.png" alt="M Village酒店房間1" class="hotel-image">
-                        <img src="https://l.urusai.cc/qdPcb.png" alt="M Village酒店房間2" class="hotel-image">
+                        <img src="https://l.urusai.cc/VGMW2.png" alt="M Village精品酒店房間" class="hotel-image">
+                        <img src="https://l.urusai.cc/qdPcb.png" alt="M Village精品酒店大廳" class="hotel-image">
                     </div>
                 </div>
 
                 <div class="glass-card hotel-description">
-                    <h3><i class="fas fa-star"></i> 這間飯店是什麼來頭？</h3>
-                    <p><strong>M Village</strong> 是胡志明市本地知名精品酒店品牌，以老建築改造 × 熱帶叢林花園著稱，情侶必訪。<strong>Signature</strong> 是其旗下精緻系列，室內軟裝更細膩。位於<strong>海霸王街（第三郡）</strong>，步行 5 分鐘到 Park Hyatt 旁的歌劇院廣場（第一郡核心），鬧中取靜。</p>
+                    <h3><i class="fas fa-star"></i> 為什麼選這間？</h3>
+                    <p><strong>Signature by M Village</strong> 是胡志明市知名精品酒店品牌，以老建築改造 × 熱帶叢林花園著稱，特別受蜜月客歡迎。位於<strong>海霸王街（第三郡）</strong>，步行即可到達粉紅教堂、黎文八公園，鬧中取靜。飯店本身就是拍照勝地。</p>
 
-                    <h3 style="margin-top: 1.5rem;">📌 附近值得去的地方</h3>
+                    <h3 style="margin-top: 1.5rem;">📍 附近值得去的地方</h3>
                     <ul class="nearby-list">
-                        <li><strong>粉紅教堂（新定教堂）</strong> | 步行 3 分鐘 | 全西貢最上鏡的粉紅色教堂</li>
+                        <li><strong>粉紅教堂（新定教堂）</strong> | 步行 2 分鐘 | 全西貢最上鏡的粉紅色教堂</li>
                         <li><strong>黎文八公園</strong> | 步行 2 分鐘 | 大型綠地，早上散步超舒服</li>
+                        <li><strong>海霸王街沿途咖啡館</strong> | 出門即是 | 精品咖啡、甜點店林立</li>
                         <li><strong>歌劇院廣場 / Park Hyatt</strong> | 步行 8 分鐘 | 第一郡最繁華的地標區</li>
                         <li><strong>中央郵政局 & 紅教堂</strong> | 步行 10 分鐘 | 法國殖民時期百年建築</li>
                         <li><strong>濱城市場</strong> | Grab 約 5 分鐘 | 傳統市集，紀念品、香料一應俱全</li>
-                        <li><strong>海霸王街沿途咖啡館</strong> | 出門即是 | 精品咖啡、甜點店林立，隨走隨停</li>
                     </ul>
 
                     <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--c-border);">
                         <label style="font-size: 0.8rem; color: var(--c-text-muted); text-transform: uppercase;">住宿期間</label>
                         <p style="font-weight: 600; color: var(--c-text); margin-top: 0.5rem;">
-                            入住：2026年3月29日 | 退住：2026年4月2日
+                            入住：2026年3月29日 | 退住：2026年4月2日（5 晚）
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coffee Shops Recommendations -->
+        <section class="coffee-section">
+            <h3><i class="fas fa-coffee"></i> 精品咖啡漫步地圖</h3>
+            <p style="color: var(--c-text-muted); margin-bottom: 1.5rem;">這趟蜜月專為咖啡愛好者設計 — 越南精品咖啡文化體驗</p>
+            <div class="coffee-grid">
+                <div class="coffee-card">
+                    <h4>Saigon Coffee Roastery</h4>
+                    <p>知名咖啡師 Pháp Võ 創立，自家烘焙，極簡風格。精品豆品質高，手沖細致。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> 151 Đồng Khởi, District 1
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <h4>The Workshop Coffee</h4>
+                    <p>工業風精品咖啡館，自家烘焙，人氣名店。採光極佳，適合待一個下午。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> 27 Ngô Đức Kế, District 1
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <h4>Bosgaurus Coffee Roasters</h4>
+                    <p>河景別墅咖啡廳，自烘精品豆，多款手沖。舒適環境，適合悠閒午後。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> 92 Nguyễn Hữu Cảnh, Bình Thạnh
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <h4>Hummingbird Café & Roastery</h4>
+                    <p>現場 15kg Probat 烘豆機運作，可觀看烘豆過程。新鮮豆度最高。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> 越南精品咖啡指標
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <h4>43 Factory Coffee</h4>
+                    <p>越南本土精品咖啡品牌，多間門市分布第一、三郡，品質穩定。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> 多間門市 / District 1 & 3
+                    </div>
+                </div>
+
+                <div class="coffee-card">
+                    <h4>海霸王街精品咖啡區</h4>
+                    <p>飯店門外的海霸王街本身就是咖啡廊道，每間都值得試。步行探索最舒服。</p>
+                    <div class="coffee-address">
+                        <i class="fas fa-map-marker-alt"></i> Hải Bà Trưng Street, District 3
                     </div>
                 </div>
             </div>
@@ -761,7 +1034,8 @@
 
         <!-- Daily Itinerary -->
         <section id="itinerary">
-            <h2 class="section-title"><i class="fas fa-map-location-dot"></i> 五天四夜行程</h2>
+            <h2 class="section-title"><i class="fas fa-calendar-days"></i> 五天四夜行程</h2>
+            <p class="section-subtitle">放鬆為主，每天只有 2-3 個活動，其餘時間自由探索與休息</p>
 
             <!-- Day 1 -->
             <div class="day-section" id="day-1">
@@ -770,80 +1044,71 @@
                     <p>抵達與奢華開場</p>
                 </div>
                 <div class="events-container">
-                    <!-- Event 1 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">10:30</div>
-                            <div class="event-time-label">抵達</div>
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">10:30</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">抵達</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-plane-arrival"></i> 飛機降落與通關</h4>
-                            <p class="event-description">星宇 JX711 抵達新山一機場</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 20 分鐘車程</span>
+                        <div class="activity-title"><i class="fas fa-plane-arrival"></i> 新山一機場抵達與通關</div>
+                        <div class="activity-description">
+                            星宇 JX711 抵達。順利通關後取行李。
                         </div>
-                    </div>
-
-                    <!-- Event 2 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">12:00</div>
-                            <div class="event-time-label">午餐</div>
-                        </div>
-                        <div class="event-content event-booked">
-                            <h4><i class="fas fa-check"></i> Le Corto (Sunday Brunch)</h4>
-                            <p class="event-description">法式吃到飽早午餐</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 10 分鐘車程</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> Grab 約 20 分鐘到飯店
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 3 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">14:00</div>
-                            <div class="event-time-label">散步</div>
+                    <!-- Activity 2 -->
+                    <div class="activity-card activity-booked">
+                        <div class="activity-time">
+                            <div class="activity-time-value">12:00</div>
+                            <span style="color: var(--c-success); font-size: 0.9rem;">午餐</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-camera"></i> 西貢中心郵政局 & 聖母聖殿主教座堂</h4>
-                            <p class="event-description">百年法式建築與紅教堂廣場</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 從餐廳走過去約 5 分鐘</span>
+                        <div class="activity-title">
+                            <i class="fas fa-check"></i> Le Corto — Sunday Brunch
+                            <span class="status-badge badge-booked">
+                                <i class="fas fa-check-circle"></i> 已訂
+                            </span>
                         </div>
-                    </div>
-
-                    <!-- Event 4 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">15:30</div>
-                            <div class="event-time-label">下午茶</div>
+                        <div class="activity-description">
+                            法式吃到飽早午餐。週日限定，飯後可回飯店 Check-in。
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-cupcake"></i> Ivoire Pastry Boutique</h4>
-                            <p class="event-description">法式甜點</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 5 分鐘車程 / 走路 15 分</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-utensils"></i>
+                                <a href="https://www.google.com/maps/search/Le+Corto+Ho+Chi+Minh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 5 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">17:00</div>
-                            <div class="event-time-label">放鬆</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-spa"></i> Miu Miu Spa</h4>
-                            <p class="event-description">精油按摩 90 分鐘</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
-                        </div>
+                    <!-- Free Time -->
+                    <div class="free-time-block">
+                        <strong>下午自由時間</strong> — 回飯店休息、整理行李，或在飯店周邊悠閒散步。粉紅教堂就在旁邊走 2 分鐘，可順便拍照。
                     </div>
 
-                    <!-- Event 6 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">19:00</div>
-                            <div class="event-time-label">晚餐</div>
+                    <!-- Optional Activity -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">晚餐</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">建議</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-bread-slice"></i> Bánh Mì Huynh Hoa</h4>
-                            <p class="event-description">知名越式法國麵包</p>
+                        <div class="activity-title">
+                            <i class="fas fa-bowl-rice"></i> Bánh Mì Huynh Hoa
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待訂
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            越南傳統法包三明治，飯店附近就有，便宜又好吃。或直接在飯店餐廳用餐放鬆。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-utensils"></i>
+                                <a href="https://www.google.com/maps/search/Banh+Mi+Huynh+Hoa+Ho+Chi+Minh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -853,97 +1118,96 @@
             <div class="day-section" id="day-2">
                 <div class="day-header">
                     <h2>Day 2: 3月30日 (週一)</h2>
-                    <p>巷弄職人與經典披薩</p>
+                    <p>咖啡與經典披薩</p>
                 </div>
                 <div class="events-container">
-                    <!-- Event 1 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">10:00</div>
-                            <div class="event-time-label">早午餐</div>
+                    <!-- Free Time Morning -->
+                    <div class="free-time-block">
+                        <strong>上午自由時間</strong> — 睡到自然醒，飯店附近吃早餐。海霸王街精品咖啡館和麵包店隨走隨停。
+                    </div>
+
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">11:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">咖啡</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-sun"></i> <a href="https://www.google.com/maps/search/Xoi+Ga+Number+One" target="_blank">Xôi Gà Number One <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">雞肉糯米飯</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 10 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-coffee"></i> Saigon Coffee Roastery
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待訂
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            知名咖啡師 Pháp Võ 創立，自家烘焙精品豆。極簡現代風格，咖啡品質頂級。鄰近 Đồng Khởi 街老城區，可順便散步。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> 151 Đồng Khởi, District 1
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> Grab 約 10 分鐘
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Saigon+Coffee+Roastery+151+Dong+Khoi" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 2 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">13:00</div>
-                            <div class="event-time-label">午餐</div>
+                    <!-- Free Time Afternoon -->
+                    <div class="free-time-block">
+                        <strong>午餐與下午自由</strong> — 咖啡館周邊探索，或 Grab 回飯店休息、游泳池放鬆。
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="activity-card activity-booked">
+                        <div class="activity-time">
+                            <div class="activity-time-value">17:00</div>
+                            <span style="color: var(--c-success); font-size: 0.9rem;">SPA</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-utensils"></i> <a href="https://www.google.com/maps/search/Bep+Me+In+Ho+Chi+Minh" target="_blank">Bếp Mẹ Ỉn <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">越式海鮮煎餅與烤肉米線</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-spa"></i> Miu Miu Spa — 放鬆按摩
+                            <span class="status-badge badge-booked">
+                                <i class="fas fa-check-circle"></i> 已訂
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            60-90 分鐘傳統越南按摩。晚餐前放鬆身心，完美銜接。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> 胡志明市精選分店
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 3 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">14:30</div>
-                            <div class="event-time-label">逛街</div>
+                    <!-- Activity 3 -->
+                    <div class="activity-card activity-booked">
+                        <div class="activity-time">
+                            <div class="activity-time-value">18:30</div>
+                            <span style="color: var(--c-success); font-size: 0.9rem;">晚餐</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-building"></i> <a href="https://www.google.com/maps/search/The+Cafe+Apartments+Ho+Chi+Minh" target="_blank">咖啡公寓 & 阮惠街步行街 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">步行逛街與文創咖啡</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 從餐廳走路約 10 分鐘</span>
+                        <div class="activity-title">
+                            <i class="fas fa-check"></i> Pizza 4P's — 窯烤手工披薩
+                            <span class="status-badge badge-booked">
+                                <i class="fas fa-check-circle"></i> 已訂
+                            </span>
                         </div>
-                    </div>
-
-                    <!-- Event 4 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">16:00</div>
-                            <div class="event-time-label">下午茶</div>
+                        <div class="activity-description">
+                            創始店，Lê Thánh Tôn 街。道地義式窯烤披薩，佐越南葡萄酒。浪漫用餐體驗。
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-coffee"></i> <a href="https://www.google.com/maps/search/The+Workshop+Specialty+Coffee" target="_blank">The Workshop Specialty Coffee <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">精品咖啡</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 5 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">17:30</div>
-                            <div class="event-time-label">傍晚</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-masks-theater"></i> <a href="https://www.google.com/maps/search/Ho+Chi+Minh+City+Opera+House" target="_blank">胡志明市大劇院外圍 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">劇院廣場散步</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 步行約 10 分可至晚餐餐廳</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 6 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">18:30</div>
-                            <div class="event-time-label">晚餐</div>
-                        </div>
-                        <div class="event-content event-booked">
-                            <h4><i class="fas fa-check"></i> <a href="https://www.google.com/maps/search/Pizza+4Ps+Le+Thanh+Ton" target="_blank">Pizza 4P's (Lê Thánh Tôn 創始店) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">窯烤手工披薩</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 7 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">20:30</div>
-                            <div class="event-time-label">按摩</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-spa"></i> <a href="https://www.google.com/maps/search/Miu+Miu+Spa+2" target="_blank">Miu Miu Spa 2 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">精油或泰式按摩</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 步行約 3 分鐘</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> Lê Thánh Tôn Street, District 1
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> SPA 後 Grab 約 8 分鐘
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Pizza+4Ps+Le+Thanh+Ton+Ho+Chi+Minh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -953,97 +1217,100 @@
             <div class="day-section" id="day-3">
                 <div class="day-header">
                     <h2>Day 3: 3月31日 (週二)</h2>
-                    <p>回味小法餐與奢華和牛</p>
+                    <p>在地味覺與放鬆</p>
                 </div>
                 <div class="events-container">
-                    <!-- Event 1 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">09:30</div>
-                            <div class="event-time-label">晨間</div>
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">09:30</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">早晨</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-church"></i> <a href="https://www.google.com/maps/search/Tan+Dinh+Church" target="_blank">粉紅教堂 (新定教堂) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">知名地標拍照</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 就在飯店旁邊！走路 2 分鐘</span>
+                        <div class="activity-title">
+                            <i class="fas fa-church"></i> 粉紅教堂晨間散步
                         </div>
-                    </div>
-
-                    <!-- Event 2 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">10:30</div>
-                            <div class="event-time-label">早午餐</div>
+                        <div class="activity-description">
+                            飯店旁邊 2 分鐘步行。晨光最美，拍照絕佳時間。順便在附近吃早餐。
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-bowl-food"></i> <a href="https://www.google.com/maps/search/Pho+Phuong+Ho+Chi+Minh" target="_blank">Phở Phượng <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">越南生牛肉河粉</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> Tan Dinh Church, Hai Ba Trung St
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 3 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">13:00</div>
-                            <div class="event-time-label">午餐</div>
+                    <!-- Activity 2 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">11:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">咖啡</span>
                         </div>
-                        <div class="event-content event-booked">
-                            <h4><i class="fas fa-clock"></i> <a href="https://www.google.com/maps/search/Cocotte+Ho+Chi+Minh" target="_blank">Cocotte <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">法式小館 (鴨腿與洋蔥湯)</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 10 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-coffee"></i> The Workshop Coffee
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待訂
+                            </span>
                         </div>
-                    </div>
-
-                    <!-- Event 4 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">14:30</div>
-                            <div class="event-time-label">咖啡</div>
+                        <div class="activity-description">
+                            工業風精品咖啡館，自家烘焙。採光超棒，適合待一整個下午。咖啡師手沖專業。
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-coffee"></i> <a href="https://www.google.com/maps/search/Bosgaurus+Coffee+Roasters" target="_blank">Bosgaurus Coffee Roasters <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">實驗室風格精品咖啡</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距餐廳約 10 分鐘車程</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 5 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">16:00</div>
-                            <div class="event-time-label">午後</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-tree"></i> <a href="https://www.google.com/maps/search/Saigon+Zoo+and+Botanical+Gardens" target="_blank">西貢動植物園周邊 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">綠地與植物園散步</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 就在咖啡廳與濱河區旁邊</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> 27 Ngô Đức Kế, District 1
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> Grab 約 8 分鐘
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/The+Workshop+Coffee+27+Ngo+Duc+Ke" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 6 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">17:30</div>
-                            <div class="event-time-label">放鬆</div>
+                    <!-- Free Time Afternoon -->
+                    <div class="free-time-block">
+                        <strong>下午自由</strong> — 咖啡館悠閒待著，或附近老城區散步探索。隨意逛街、發現小店。
+                    </div>
+
+                    <!-- Activity 3 -->
+                    <div class="activity-card activity-booked">
+                        <div class="activity-time">
+                            <div class="activity-time-value">17:00</div>
+                            <span style="color: var(--c-success); font-size: 0.9rem;">SPA</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-spa"></i> <a href="https://www.google.com/maps/search/Miu+Miu+Spa+1" target="_blank">Miu Miu Spa 1 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">按摩放鬆</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距植物園約 10 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-spa"></i> Miu Miu Spa — 放鬆按摩
+                            <span class="status-badge badge-booked">
+                                <i class="fas fa-check-circle"></i> 已訂
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            第二次 SPA。60-90 分鐘，晚餐前放鬆。
                         </div>
                     </div>
 
-                    <!-- Event 7 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">19:00</div>
-                            <div class="event-time-label">晚餐</div>
+                    <!-- Activity 4 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">19:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">晚餐</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-clock"></i> <a href="https://www.google.com/maps/search/Sol+Kitchen+Bar+Ho+Chi+Minh" target="_blank">Sol Kitchen & Bar <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">碳烤和牛與餐酒館</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 10 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-utensils"></i> Cocotte 法式小館
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待選
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            法式經典小館，法國廚師主理。或改為 Phở Phượng 河粉。兩間都是老城區名店。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Cocotte+Ho+Chi+Minh+French" target="_blank">Cocotte Google Maps</a> /
+                                <a href="https://www.google.com/maps/search/Pho+Phuong+Ho+Chi+Minh" target="_blank">Phở Phượng</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1053,85 +1320,91 @@
             <div class="day-section" id="day-4">
                 <div class="day-header">
                     <h2>Day 4: 4月1日 (週三)</h2>
-                    <p>越式深度體驗</p>
+                    <p>深度體驗日（可走遠一點的一天）</p>
                 </div>
                 <div class="events-container">
-                    <!-- Event 1 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">09:30</div>
-                            <div class="event-time-label">早餐</div>
+                    <!-- Free Time Morning -->
+                    <div class="free-time-block">
+                        <strong>上午自由時間</strong> — 睡到自然醒，飯店附近早餐。悠閒開啟新的一天。
+                    </div>
+
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">10:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">咖啡</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-sun"></i> <a href="https://www.google.com/maps/search/Bo+Ne+Ba+Nui+Ho+Chi+Minh" target="_blank">Bò Né Bà Nũi <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">越式鐵板牛柳加蛋</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 12 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-coffee"></i> Bosgaurus Coffee Roasters
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待訂
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            河景別墅咖啡廳，自烘精品豆。多款手沖，環境舒適優雅。這是今趟最遠但最值得的咖啡館。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> 92 Nguyễn Hữu Cảnh, Saigon Pearl, Bình Thạnh
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> Grab 約 15 分鐘
+                            </div>
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Bosgaurus+Coffee+Roasters+92+Nguyen+Huu+Canh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 2 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">11:00</div>
-                            <div class="event-time-label">文化</div>
+                    <!-- Free Time Noon -->
+                    <div class="free-time-block">
+                        <strong>午餐自由</strong> — 咖啡館周邊用餐，或 Grab 回飯店休息。
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">午餐</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">推薦</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-landmark"></i> <a href="https://www.google.com/maps/search/War+Remnants+Museum+Ho+Chi+Minh" target="_blank">戰爭遺跡博物館 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">博物館歷史走讀</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-bowl-rice"></i> Nhà Hàng Ngon — 越南小吃集合
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待選
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            越南在地小吃自助餐廳，經典菜色集合。鮮活食材、道地口味。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Nha+Hang+Ngon+Ho+Chi+Minh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 3 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">13:30</div>
-                            <div class="event-time-label">午餐</div>
+                    <!-- Activity 3 -->
+                    <div class="activity-card activity-booked">
+                        <div class="activity-time">
+                            <div class="activity-time-value">16:00</div>
+                            <span style="color: var(--c-success); font-size: 0.9rem;">SPA</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-clock"></i> <a href="https://www.google.com/maps/search/Nha+Hang+Ngon+Ho+Chi+Minh" target="_blank">Nhà Hàng Ngon (美味餐廳) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">越南風味小吃集合</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-spa"></i> Miu Miu Spa — 放鬆按摩
+                            <span class="status-badge badge-booked">
+                                <i class="fas fa-check-circle"></i> 已訂
+                            </span>
                         </div>
-                    </div>
-
-                    <!-- Event 4 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">16:00</div>
-                            <div class="event-time-label">按摩</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-spa"></i> <a href="https://www.google.com/maps/search/Miu+Miu+Spa+1" target="_blank">Miu Miu Spa 1 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">按摩放鬆</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 8 分鐘車程</span>
+                        <div class="activity-description">
+                            第三次 SPA。蜜月的定番放鬆儀式。60-90 分鐘。
                         </div>
                     </div>
 
-                    <!-- Event 5 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">18:30</div>
-                            <div class="event-time-label">晚餐</div>
-                        </div>
-                        <div class="event-content event-booked">
-                            <h4><i class="fas fa-check"></i> <a href="https://www.google.com/maps/search/Vinh+Khanh+Street+Seafood" target="_blank">Vĩnh Khánh (永慶街螺肉海鮮) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">越式街頭熱炒海鮮</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 15 分鐘車程</span>
-                        </div>
-                    </div>
-
-                    <!-- Event 6 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">21:00</div>
-                            <div class="event-time-label">夜間</div>
-                        </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-music"></i> <a href="https://www.google.com/maps/search/Bui+Vien+Walking+Street" target="_blank">Bùi Viện 碧文街 (西貢酒吧街) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">酒吧街體驗</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 15 分鐘車程</span>
-                        </div>
+                    <!-- Free Time Evening -->
+                    <div class="free-time-block">
+                        <strong>晚餐自由</strong> — Vĩnh Khánh（永慶街）海鮮，或飯店附近隨意用餐。輕鬆沒有壓力的一晚。
                     </div>
                 </div>
             </div>
@@ -1140,58 +1413,81 @@
             <div class="day-section" id="day-5">
                 <div class="day-header">
                     <h2>Day 5: 4月2日 (週四)</h2>
-                    <p>完美收尾</p>
+                    <p>慢慢收尾</p>
                 </div>
                 <div class="events-container">
-                    <!-- Event 1 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">09:30</div>
-                            <div class="event-time-label">晨間</div>
+                    <!-- Activity 1 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">09:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">早晨</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-tree"></i> <a href="https://www.google.com/maps/search/Le+Van+Tam+Park+Ho+Chi+Minh" target="_blank">黎文八公園 (Công Viên Lê Văn Tám) <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">晨間公園悠閒散步</p>
-                            <span class="event-distance"><i class="fas fa-person-walking"></i> 就在飯店正對面！走路 1 分鐘</span>
+                        <div class="activity-title">
+                            <i class="fas fa-tree"></i> 黎文八公園晨間散步
                         </div>
-                    </div>
-
-                    <!-- Event 2 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">10:30</div>
-                            <div class="event-time-label">早點</div>
+                        <div class="activity-description">
+                            飯店正對面。大型綠地，晨光柔和。散步後在海霸王街咖啡館早餐。最後一次悠閒時光。
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-bread-slice"></i> <a href="https://www.google.com/maps/search/Banh+Mi+Hong+Hoa" target="_blank">Bánh Mì Hồng Hoa <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">高分越南法國麵包</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 10 分鐘車程</span>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-map-marker-alt"></i> Lê Văn Tám Park, District 3
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 3 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">13:00</div>
-                            <div class="event-time-label">午餐</div>
+                    <!-- Activity 2 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">11:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">午餐</span>
                         </div>
-                        <div class="event-content">
-                            <h4><i class="fas fa-clock"></i> <a href="https://www.google.com/maps/search/Lau+De+Lao+Lai+Ho+Chi+Minh" target="_blank">老賴羊肉火鍋 <i class="fas fa-external-link-alt"></i></a></h4>
-                            <p class="event-description">在地老字號羊肉爐</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 15 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-bowl-rice"></i> Bánh Mì Hồng Hoa
+                            <span class="status-badge badge-pending">
+                                <i class="fas fa-hourglass-half"></i> 待選
+                            </span>
+                        </div>
+                        <div class="activity-description">
+                            傳統法包三明治，飯店附近就有。簡單又滿足的最後一餐。或另選熟悉的餐廳。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-link"></i>
+                                <a href="https://www.google.com/maps/search/Banh+Mi+Hong+Hoa+Ho+Chi+Minh" target="_blank">Google Maps</a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Event 4 -->
-                    <div class="event-card">
-                        <div class="event-time">
-                            <div class="event-time-value">16:30</div>
-                            <div class="event-time-label">賦歸</div>
+                    <!-- Activity 3 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">14:00</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">行動</span>
                         </div>
-                        <div class="event-content" style="border-left-color: var(--c-primary-light); background: rgba(225, 29, 72, 0.05);">
-                            <h4><i class="fas fa-plane-departure"></i> 抵達新山一機場</h4>
-                            <p class="event-description">JX714 起飛返回台北</p>
-                            <span class="event-distance"><i class="fas fa-car"></i> 距飯店約 25 分鐘車程</span>
+                        <div class="activity-title">
+                            <i class="fas fa-suitcase"></i> 飯店退房與行李整理
+                        </div>
+                        <div class="activity-description">
+                            打包行李，退房。留足時間前往機場。
+                        </div>
+                    </div>
+
+                    <!-- Activity 4 -->
+                    <div class="activity-card">
+                        <div class="activity-time">
+                            <div class="activity-time-value">16:30</div>
+                            <span style="color: var(--c-text-muted); font-size: 0.9rem;">出發</span>
+                        </div>
+                        <div class="activity-title">
+                            <i class="fas fa-plane-departure"></i> 前往新山一機場
+                        </div>
+                        <div class="activity-description">
+                            JX714 於 18:05 起飛。提前抵達機場辦理登機手續。
+                        </div>
+                        <div class="activity-meta">
+                            <div class="activity-location">
+                                <i class="fas fa-car"></i> Grab 約 20 分鐘到機場
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1200,15 +1496,15 @@
 
         <!-- Closing Message -->
         <div class="closing-message">
-            <h2><i class="fas fa-heart"></i> 期待與妳一起重溫西貢的美好與驚喜</h2>
-            <p>蜜月快樂 💕</p>
+            <h2><i class="fas fa-heart"></i> 蜜月快樂</h2>
+            <p>期待與妳一起重溫西貢的美好與驚喜，在每一杯咖啡、每一餐美食、每一次散步中留下回憶。</p>
         </div>
     </main>
 
     <!-- Footer -->
     <footer>
         <p>Designed with love for your honeymoon adventure 🇻🇳</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Saigon, March 29 - April 2, 2026</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Saigon, March 29 - April 2, 2026 — Relaxation First</p>
     </footer>
 
     <script>
@@ -1270,6 +1566,13 @@
 
             dayTabs.forEach(tab => tab.classList.remove('active'));
             document.querySelector(`[data-day="${currentDay}"]`)?.classList.add('active');
+        });
+
+        // Todo Item Toggle
+        document.querySelectorAll('.todo-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('completed');
+            });
         });
     </script>
 </body>
