@@ -146,6 +146,14 @@
             margin-bottom: 1rem;
         }
 
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--c-primary);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
         .trip-info {
             display: flex;
             justify-content: center;
@@ -720,6 +728,112 @@
             border-top: 1px solid var(--c-border);
         }
 
+        /* Highlight Card */
+        .highlight-card {
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+            color: white;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(225, 29, 72, 0.15);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(225, 29, 72, 0.25);
+        }
+
+        .highlight-card-day1 {
+            background: linear-gradient(135deg, #FFB347 0%, #FF8C42 50%, #FF6B6B 100%);
+        }
+
+        .highlight-card-day2 {
+            background: linear-gradient(135deg, #FFAA5C 0%, #FF9D3B 50%, #FF7B54 100%);
+        }
+
+        .highlight-card-day3 {
+            background: linear-gradient(135deg, #FFC572 0%, #FFB347 50%, #FF8C42 100%);
+        }
+
+        .highlight-card-day4 {
+            background: linear-gradient(135deg, #FFD98A 0%, #FFC572 50%, #FFAA5C 100%);
+        }
+
+        .highlight-card-day5 {
+            background: linear-gradient(135deg, #FFE4A0 0%, #FFD98A 50%, #FFC572 100%);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .highlight-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            opacity: 0.95;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .todo-section h3::before {
+            content: '';
+        }
+
+        .todo-header-note {
+            color: var(--c-text-muted);
+            font-size: 0.9rem;
+            font-weight: 400;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .flight-header-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+            font-weight: 500;
+        }
+
+        .hotel-personal-note {
+            color: var(--c-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(225, 29, 72, 0.08);
+            border-left: 4px solid var(--c-primary);
+            border-radius: var(--radius-sm);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -785,6 +899,7 @@
         <section class="hero">
             <h1>2026 越南胡志明蜜月旅行 🇻🇳</h1>
             <p>五天四夜的放鬆越南之旅 — 悠閒漫步、精品咖啡、在地美食</p>
+            <p class="hero-subtitle">「我幫妳規劃好了一切，妳只要帶著好心情出發就好 💛」</p>
             <div class="trip-info">
                 <div class="info-card">
                     <strong>旅客</strong>
@@ -808,6 +923,7 @@
         <!-- Todo Checklist Section -->
         <section class="todo-section">
             <h3><i class="fas fa-tasks"></i> 待辦事項</h3>
+            <div class="todo-header-note">出發前的準備清單（交給我就好 😉）</div>
             <ul class="todo-list">
                 <li class="todo-item">
                     <div class="todo-checkbox">☐</div>
@@ -860,7 +976,10 @@
             <!-- Outbound Flight -->
             <div class="glass-card flight-card">
                 <div class="flight-header">
-                    <span><i class="fas fa-plane"></i> 星宇航空 JX 711 — 去程</span>
+                    <div>
+                        <span><i class="fas fa-plane"></i> 星宇航空 JX 711 — 去程</span>
+                        <div class="flight-header-subtitle">蜜月啟程 ✨</div>
+                    </div>
                     <span>2026年03月29日 (週日)</span>
                 </div>
                 <div class="flight-content">
@@ -954,6 +1073,9 @@
                 </div>
 
                 <div class="glass-card hotel-description">
+                    <div class="hotel-personal-note">
+                        <i class="fas fa-heart"></i> 我特別為妳挑了這間飯店 — 老建築改造的熱帶花園精品酒店，走出門就是粉紅教堂和咖啡街。
+                    </div>
                     <h3><i class="fas fa-star"></i> 為什麼選這間？</h3>
                     <p><strong>Signature by M Village</strong> 是胡志明市知名精品酒店品牌，以老建築改造 × 熱帶叢林花園著稱，特別受蜜月客歡迎。位於<strong>海霸王街（第三郡）</strong>，步行即可到達粉紅教堂、黎文八公園，鬧中取靜。飯店本身就是拍照勝地。</p>
 
@@ -1044,6 +1166,14 @@
                     <p>抵達與奢華開場</p>
                 </div>
                 <div class="events-container">
+                    <!-- Highlight Card -->
+                    <div class="highlight-card highlight-card-day1">
+                        <div class="highlight-icon">🥂</div>
+                        <h3 class="highlight-title">Le Corto Sunday Brunch</h3>
+                        <p class="highlight-description">抵達西貢的第一餐，就是法式奢華吃到飽早午餐。生蠔、甜點、香檳，為蜜月華麗開場。</p>
+                        <span class="highlight-tag">⏰ 12:00</span>
+                    </div>
+
                     <!-- Activity 1 -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -1121,6 +1251,14 @@
                     <p>咖啡與經典披薩</p>
                 </div>
                 <div class="events-container">
+                    <!-- Highlight Card -->
+                    <div class="highlight-card highlight-card-day2">
+                        <div class="highlight-icon">🍕</div>
+                        <h3 class="highlight-title">Pizza 4P's</h3>
+                        <p class="highlight-description">亞洲最強窯烤披薩的創始店。自製布拉塔起司 × 越南精釀，浪漫晚餐約定。</p>
+                        <span class="highlight-tag">⏰ 18:30</span>
+                    </div>
+
                     <!-- Free Time Morning -->
                     <div class="free-time-block">
                         <strong>上午自由時間</strong> — 睡到自然醒，飯店附近吃早餐。海霸王街精品咖啡館和麵包店隨走隨停。
@@ -1220,6 +1358,14 @@
                     <p>在地味覺與放鬆</p>
                 </div>
                 <div class="events-container">
+                    <!-- Highlight Card -->
+                    <div class="highlight-card highlight-card-day3">
+                        <div class="highlight-icon">☕</div>
+                        <h3 class="highlight-title">精品咖啡 × SPA 雙重放鬆</h3>
+                        <p class="highlight-description">上午品味西貢最好的手沖咖啡，傍晚讓越式按摩洗去所有疲憊。完美的一天。</p>
+                        <span class="highlight-tag">⏰ 11:00 & 17:00</span>
+                    </div>
+
                     <!-- Activity 1 -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -1323,6 +1469,14 @@
                     <p>深度體驗日（可走遠一點的一天）</p>
                 </div>
                 <div class="events-container">
+                    <!-- Highlight Card -->
+                    <div class="highlight-card highlight-card-day4">
+                        <div class="highlight-icon">🌅</div>
+                        <h3 class="highlight-title">深度探索日</h3>
+                        <p class="highlight-description">今天走遠一點點。河畔別墅裡的精品咖啡，傍晚 SPA 後的自由晚餐。</p>
+                        <span class="highlight-tag">⏰ 探索節奏</span>
+                    </div>
+
                     <!-- Free Time Morning -->
                     <div class="free-time-block">
                         <strong>上午自由時間</strong> — 睡到自然醒，飯店附近早餐。悠閒開啟新的一天。
@@ -1416,6 +1570,14 @@
                     <p>慢慢收尾</p>
                 </div>
                 <div class="events-container">
+                    <!-- Highlight Card -->
+                    <div class="highlight-card highlight-card-day5">
+                        <div class="highlight-icon">🌄</div>
+                        <h3 class="highlight-title">最後的西貢時光</h3>
+                        <p class="highlight-description">在公園的晨光裡散步，帶著滿滿回憶和最後一杯越南咖啡，說聲再見。</p>
+                        <span class="highlight-tag">⏰ 早晨 × 午前</span>
+                    </div>
+
                     <!-- Activity 1 -->
                     <div class="activity-card">
                         <div class="activity-time">
