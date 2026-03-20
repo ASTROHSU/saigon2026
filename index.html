@@ -1356,6 +1356,24 @@
             color: var(--c-primary);
         }
 
+        /* Expired Days Styling */
+        .backup-day-group.backup-day-expired {
+            opacity: 0.45;
+        }
+
+        .backup-day-group.backup-day-expired .backup-day-label {
+            color: var(--c-text-muted);
+            text-decoration: line-through;
+        }
+
+        .backup-expired-separator {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--c-text-muted);
+            padding: 0.75rem 0;
+            letter-spacing: 1px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -2378,17 +2396,45 @@
         <div class="backup-panel-body">
             <p class="backup-intro">如果太太臨時想換口味，這裡都是附近的米其林推薦替代方案，已經幫你查好地點和營業時間了。</p>
 
-            <!-- Day 2 Backups -->
-            <div class="backup-day-group">
-                <div class="backup-day-label">Day 2 · 3/30 備案</div>
+            <!-- Day 1 Backups -->
+            <div class="backup-day-group" data-date="2026-03-29">
+                <div class="backup-day-label">Day 1 · 3/29 備案</div>
+
+                <!-- Lunch Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Secret Garden — 屋頂花園越南家常菜</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Le Corto Brunch（如果有臨時狀況）</div>
+                    <p>米其林推薦。隱藏在老公寓頂樓的露天花園餐廳，越南家常菜配市景。Grab 10分鐘。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 158 Pasteur, D1（飯店 Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 09:00-22:00・<a href="https://www.google.com/maps/search/Secret+Garden+158+Pasteur+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
 
                 <div class="backup-card">
                     <div class="backup-card-header">
-                        <h4>Hồng Phát — 柬式米線湯</h4>
-                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                        <h4>Phở Hòa Pasteur — 米其林必比登河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
-                    <div class="backup-replace">→ 替代 Phở Hòa Pasteur（如果不想吃河粉）</div>
-                    <p>1975 年開業，柬埔寨風味的 Hủ Tiếu 米線湯，配碎肉、蝦仁、豬肝。口味比河粉更清爽鮮甜。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-replace">→ 替代 Le Corto Brunch（如果想先墊胃）</div>
+                    <p>必比登推薦。簡單快速的河粉，剛下飛機不想太複雜可以先吃。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 260C Pasteur, D3（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-22:30・<a href="https://www.google.com/maps/search/Pho+Hoa+Pasteur+260C+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Dinner Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線湯 Hủ Tiếu</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bánh Mì Huynh Hoa（如果不想吃太重）</div>
+                    <p>必比登推薦。清爽鮮甜的米線湯，第一晚不想吃太重就選這個。<span class="michelin-tag">必比登</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
                         <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
@@ -2397,32 +2443,146 @@
 
                 <div class="backup-card">
                     <div class="backup-card-header">
+                        <h4>Cô Liêng — 蒟蒻葉烤牛肉捲</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bánh Mì Huynh Hoa（如果想吃正餐）</div>
+                    <p>米其林推薦。1995 年開業，招牌 Bò Lá Lốt 烤牛肉捲配米線。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 321 Võ Văn Tần, D3（飯店步行 12 分鐘）<br>
+                        <i class="fas fa-clock"></i> 08:00-23:00・<a href="https://www.google.com/maps/search/Co+Lieng+321+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 Backups -->
+            <div class="backup-day-group" data-date="2026-03-30">
+                <div class="backup-day-label">Day 2 · 3/30 備案</div>
+
+                <!-- Breakfast Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線湯</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Phở Hòa Pasteur（如果不想吃河粉）</div>
+                    <p>必比登推薦。清爽的柬埔寨風米線湯，口味更鮮甜。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Minh — 1945 年老店河粉</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Phở Hòa Pasteur（如果想吃更高級的河粉）</div>
+                    <p>必比登推薦。80 年歷史，清澈牛骨湯底。注意只開到早上 10 點，要早去！<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 63/6 Pasteur, D1（飯店 Grab 8 分鐘）<br>
+                        <i class="fas fa-clock"></i> 07:00-10:00・<a href="https://www.google.com/maps/search/Pho+Minh+63+Pasteur+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Lunch Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
                         <h4>Phở Phượng — 40 小時燉牛尾河粉</h4>
                         <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
                     <div class="backup-replace">→ 替代 Bánh Xèo 46A（如果不想吃煎餅）</div>
-                    <p>必比登推薦，招牌是 40 小時慢燉牛尾河粉，膠質濃郁入口即化。5 點就開門。<span class="michelin-tag">必比登</span></p>
+                    <p>必比登推薦。招牌是 40 小時慢燉牛尾河粉，膠質濃郁入口即化。<span class="michelin-tag">必比登</span></p>
                     <div class="backup-meta">
-                        <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（飯店 Grab 5 分鐘，離 D3 很近）<br>
-                        <i class="fas fa-clock"></i> 05:00-20:30（週一到 14:00）・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
+                        <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 05:00-20:30・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Cô Liêng — 蒟蒻葉烤牛肉捲</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bánh Xèo 46A（如果不想吃煎餅）</div>
+                    <p>米其林推薦。烤牛肉捲配米線，經典越南風味。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 321 Võ Văn Tần, D3（飯店步行 12 分鐘）<br>
+                        <i class="fas fa-clock"></i> 08:00-23:00・<a href="https://www.google.com/maps/search/Co+Lieng+321+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Dinner Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Secret Garden — 屋頂花園越南菜</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Pizza 4P's（如果想吃浪漫晚餐）</div>
+                    <p>米其林推薦。露天花園配夜景，浪漫蜜月晚餐。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 158 Pasteur, D1（飯店 Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 09:00-22:00・<a href="https://www.google.com/maps/search/Secret+Garden+158+Pasteur+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Noir Dining in the Dark — 暗黑餐廳體驗</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Pizza 4P's（如果想嘗試特別體驗）</div>
+                    <p>全黑環境用餐，由視障服務員帶位，非常特別的體驗。需預訂。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 160 Pasteur, D1（飯店 Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 18:00-22:00・<a href="https://www.google.com/maps/search/Noir+Dining+Dark+160+Pasteur+District+1" target="_blank">Google Maps</a>
                     </div>
                 </div>
             </div>
 
             <!-- Day 3 Backups -->
-            <div class="backup-day-group">
+            <div class="backup-day-group" data-date="2026-03-31">
                 <div class="backup-day-label">Day 3 · 3/31 備案</div>
 
+                <!-- Breakfast Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Hòa Pasteur — 米其林必比登河粉</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代新定市場（如果市場人太多）</div>
+                    <p>必比登推薦。如果市場人太多或不想吃路邊攤。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 260C Pasteur, D3（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-22:30・<a href="https://www.google.com/maps/search/Pho+Hoa+Pasteur+260C+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線湯</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代新定市場（如果不想吃路邊攤）</div>
+                    <p>必比登推薦。清爽的柬埔寨風米線湯。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Lunch Backups -->
                 <div class="backup-card">
                     <div class="backup-card-header">
                         <h4>Phở Việt Nam — 石鍋河粉</h4>
                         <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
                     <div class="backup-replace">→ 替代 Nhà Hàng Ngon（如果不想吃越南小吃拼盤）</div>
-                    <p>米其林推薦，招牌「Phở Thố Đá」是用滾燙石鍋上桌的河粉，保溫效果超好。手工現做米線，每天新鮮製作。<span class="michelin-tag">米其林推薦</span></p>
+                    <p>米其林推薦。招牌「Phở Thố Đá」是用滾燙石鍋上桌的河粉，保溫效果超好。<span class="michelin-tag">米其林推薦</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 14 Phạm Hồng Thái, D1（The Workshop 附近 Grab 5 分鐘）<br>
-                        <i class="fas fa-clock"></i> 06:00-03:00（幾乎全天）・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
+                        <i class="fas fa-clock"></i> 06:00-03:00・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
                     </div>
                 </div>
 
@@ -2432,25 +2592,53 @@
                         <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
                     <div class="backup-replace">→ 替代 Nhà Hàng Ngon（如果想吃精緻一點的）</div>
-                    <p>庭院花園餐廳，主打湄公河六省家鄉菜。環境清幽，有池塘和綠蔭，很適合放鬆的午餐。</p>
+                    <p>庭院花園餐廳，主打湄公河六省家鄉菜。環境清幽，有池塘和綠蔭。<span class="michelin-tag">米其林推薦</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 37 Nam Kỳ Khởi Nghĩa, D1（Nhà Hàng Ngon 附近步行 5 分鐘）<br>
                         <i class="fas fa-clock"></i> 10:00-22:00・<a href="https://www.google.com/maps/search/Bep+Nha+Luc+Tinh+37+Nam+Ky+Khoi+Nghia" target="_blank">Google Maps</a>
                     </div>
                 </div>
+
+                <!-- Dinner Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Anan Saigon — 米其林一星！</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Cocotte（如果想升級蜜月大餐）</div>
+                    <p>米其林一星！Peter Cuong Franklin 主廚，用法式技法升級越南街頭美食。需預訂。人均約 TWD 1,500-2,500。<span class="michelin-tag">米其林一星</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 89 Tôn Thất Đạm, D1（飯店 Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 18:00-22:00・<a href="https://www.google.com/maps/search/Anan+Saigon+89+Ton+That+Dam+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Secret Garden — 屋頂花園越南菜</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Cocotte（如果想輕鬆一點）</div>
+                    <p>米其林推薦。頂樓花園吃越南家常菜，夜景很棒。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 158 Pasteur, D1（飯店 Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 09:00-22:00・<a href="https://www.google.com/maps/search/Secret+Garden+158+Pasteur+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
             </div>
 
             <!-- Day 4 Backups -->
-            <div class="backup-day-group">
+            <div class="backup-day-group" data-date="2026-04-01">
                 <div class="backup-day-label">Day 4 · 4/1 備案</div>
 
+                <!-- Breakfast Backups -->
                 <div class="backup-card">
                     <div class="backup-card-header">
                         <h4>Hồng Phát — 柬式米線湯</h4>
                         <span class="backup-meal-tag breakfast">替代早餐</span>
                     </div>
-                    <div class="backup-replace">→ 替代 Cơm Tấm Ba Ghiền（如果不想吃碎米飯配豬排）</div>
-                    <p>跟 Day 2 同一間備案。清爽的柬埔寨風米線湯，沒有碎米飯那麼重口味，早上吃很舒服。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-replace">→ 替代 Cơm Tấm Ba Ghiền（如果不想吃碎米飯）</div>
+                    <p>必比登推薦。清爽的柬埔寨風米線湯，沒有碎米飯那麼重口味。<span class="michelin-tag">必比登</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
                         <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
@@ -2459,29 +2647,111 @@
 
                 <div class="backup-card">
                     <div class="backup-card-header">
-                        <h4>Bún Bò Huế 14B — 順化辣牛肉河粉</h4>
-                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                        <h4>Phở Hòa Pasteur — 河粉</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
                     </div>
-                    <div class="backup-replace">→ 替代永慶街海鮮（如果不想吃海鮮大排檔）</div>
-                    <p>必比登推薦，順化經典牛肉米線，辣香濃郁湯底配牛腱、牛筋、魚餅。只有兩張桌子的街邊攤，在地到不行。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-replace">→ 替代 Cơm Tấm Ba Ghiền（如果不想吃重口味）</div>
+                    <p>必比登推薦。如果不想吃重口味碎米飯，來碗河粉也很好。<span class="michelin-tag">必比登</span></p>
                     <div class="backup-meta">
-                        <i class="fas fa-map-marker-alt"></i> 14B Đường 46, D4（跟永慶街同區，Grab 5 分鐘）<br>
-                        <i class="fas fa-clock"></i> 06:30-20:30・<a href="https://www.google.com/maps/search/Bun+Bo+Hue+14B+District+4" target="_blank">Google Maps</a>
+                        <i class="fas fa-map-marker-alt"></i> 260C Pasteur, D3（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-22:30・<a href="https://www.google.com/maps/search/Pho+Hoa+Pasteur+260C+District+3" target="_blank">Google Maps</a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Day 5 Backups -->
-            <div class="backup-day-group">
-                <div class="backup-day-label">Day 5 · 4/2 備案</div>
+                <!-- Lunch Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Phượng — 牛尾河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代自由行午餐（在 Bình Thạnh / Landmark 81 區域）</div>
+                    <p>必比登推薦。40 小時燉牛尾河粉，回市區途中順路。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（Grab 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 05:00-20:30・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
 
                 <div class="backup-card">
                     <div class="backup-card-header">
                         <h4>Phở Việt Nam — 石鍋河粉</h4>
                         <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
+                    <div class="backup-replace">→ 替代自由行午餐（在 Bình Thạnh / Landmark 81 區域）</div>
+                    <p>米其林推薦。幾乎 24 小時營業，回市區隨時可吃。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 14 Phạm Hồng Thái, D1（Grab 15 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-03:00・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Dinner Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Bún Bò Huế 14B — 順化辣牛肉河粉</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代永慶街海鮮（如果不想吃海鮮大排檔）</div>
+                    <p>必比登推薦。順化經典牛肉米線，辣香濃郁湯底配牛腱、牛筋、魚餅。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 14B Đường 46, D4（跟永慶街同區，Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:30-20:30・<a href="https://www.google.com/maps/search/Bun+Bo+Hue+14B+District+4" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Cô Liêng — 蒟蒻葉烤牛肉捲</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代永慶街海鮮（如果想吃烤肉）</div>
+                    <p>米其林推薦。SPA 完回飯店附近就有，烤肉配啤酒也很棒。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 321 Võ Văn Tần, D3（飯店步行 12 分鐘）<br>
+                        <i class="fas fa-clock"></i> 08:00-23:00・<a href="https://www.google.com/maps/search/Co+Lieng+321+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 Backups -->
+            <div class="backup-day-group" data-date="2026-04-02">
+                <div class="backup-day-label">Day 5 · 4/2 備案</div>
+
+                <!-- Breakfast Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Hòa Pasteur — 河粉</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代海霸王街（如果想輕鬆點）</div>
+                    <p>必比登推薦。簡單快速的河粉早餐。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 260C Pasteur, D3（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-22:30・<a href="https://www.google.com/maps/search/Pho+Hoa+Pasteur+260C+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代海霸王街（如果想吃清爽的）</div>
+                    <p>必比登推薦。清爽的柬埔寨風米線。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <!-- Lunch Backups -->
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Việt Nam — 石鍋河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
                     <div class="backup-replace">→ 替代 Bếp Mẹ Ỉn（如果不想吃家常菜）</div>
-                    <p>同 Day 3 備案。石鍋河粉，手工米線，幾乎 24 小時營業。最後一餐用一碗道地河粉收尾也很完美。<span class="michelin-tag">米其林推薦</span></p>
+                    <p>米其林推薦。石鍋河粉，手工米線，幾乎 24 小時營業。最後一餐用道地河粉收尾。<span class="michelin-tag">米其林推薦</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 14 Phạm Hồng Thái, D1（Bếp Mẹ Ỉn 附近步行 8 分鐘）<br>
                         <i class="fas fa-clock"></i> 06:00-03:00・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
@@ -2490,11 +2760,11 @@
 
                 <div class="backup-card">
                     <div class="backup-card-header">
-                        <h4>Phở Phượng — 40 小時燉牛尾河粉</h4>
+                        <h4>Phở Phượng — 牛尾河粉</h4>
                         <span class="backup-meal-tag lunch">替代午餐</span>
                     </div>
                     <div class="backup-replace">→ 替代 Bếp Mẹ Ỉn（如果想吃湯麵類的）</div>
-                    <p>離飯店很近的必比登河粉，牛尾燉到入口即化。如果 Day 2 沒用到這個備案，最後一天可以來。<span class="michelin-tag">必比登</span></p>
+                    <p>必比登推薦。離飯店很近，牛尾燉到入口即化。如果 Day 2 沒用到這個備案，最後一天可以來。<span class="michelin-tag">必比登</span></p>
                     <div class="backup-meta">
                         <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（飯店 Grab 5 分鐘）<br>
                         <i class="fas fa-clock"></i> 05:00-20:30・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
@@ -2804,6 +3074,79 @@
             document.querySelector('.backup-panel').classList.toggle('open');
             document.querySelector('.backup-overlay').classList.toggle('open');
             document.body.style.overflow = document.querySelector('.backup-panel').classList.contains('open') ? 'hidden' : '';
+            sortBackupDaysByDate();
+        }
+
+        // Sort backup days - past days move to bottom with dimmed style
+        function sortBackupDaysByDate() {
+            const backupPanelBody = document.querySelector('.backup-panel-body');
+            if (!backupPanelBody) return;
+
+            // Get all day groups
+            const dayGroups = Array.from(backupPanelBody.querySelectorAll('.backup-day-group'));
+
+            // Get today's date at midnight in Vietnam timezone (UTC+7)
+            const now = new Date();
+            const vietnamOffset = 7 * 60 * 60 * 1000; // UTC+7
+            const utcTime = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+            const vietnamTime = new Date(utcTime + vietnamOffset);
+            const today = new Date(vietnamTime.getFullYear(), vietnamTime.getMonth(), vietnamTime.getDate());
+
+            // Separate active (today or future) and expired (past) days
+            const activeDays = [];
+            const expiredDays = [];
+
+            dayGroups.forEach(group => {
+                const dateStr = group.getAttribute('data-date');
+                if (!dateStr) return;
+
+                const groupDate = new Date(dateStr);
+
+                if (groupDate < today) {
+                    // Past day
+                    group.classList.add('backup-day-expired');
+                    expiredDays.push(group);
+                } else {
+                    // Today or future
+                    group.classList.remove('backup-day-expired');
+                    activeDays.push(group);
+                }
+            });
+
+            // Clear the backup panel body (except intro paragraph)
+            const introParagraph = backupPanelBody.querySelector('.backup-intro');
+            const childNodes = Array.from(backupPanelBody.childNodes);
+
+            // Remove all day groups and separators
+            childNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE &&
+                    (node.classList.contains('backup-day-group') ||
+                     node.classList.contains('backup-expired-separator'))) {
+                    node.remove();
+                }
+            });
+
+            // Re-insert active days first
+            let insertAfter = introParagraph;
+            activeDays.forEach(day => {
+                backupPanelBody.insertBefore(day, insertAfter.nextSibling);
+                insertAfter = day;
+            });
+
+            // Add separator if there are expired days
+            if (expiredDays.length > 0) {
+                const separator = document.createElement('div');
+                separator.className = 'backup-expired-separator';
+                separator.textContent = '── 已結束的天數 ──';
+                backupPanelBody.insertBefore(separator, insertAfter.nextSibling);
+                insertAfter = separator;
+            }
+
+            // Re-insert expired days at the bottom
+            expiredDays.forEach(day => {
+                backupPanelBody.insertBefore(day, insertAfter.nextSibling);
+                insertAfter = day;
+            });
         }
 
         // Secret Budget Receipt - long press on countdown for 1.5s
