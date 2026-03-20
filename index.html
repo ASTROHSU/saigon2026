@@ -834,6 +834,182 @@
             border-radius: var(--radius-sm);
         }
 
+        /* Coffee Sidebar Drawer */
+        .coffee-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(225, 29, 72, 0.3);
+            z-index: 200;
+            transition: var(--transition);
+        }
+
+        .coffee-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 24px rgba(225, 29, 72, 0.4);
+        }
+
+        .coffee-fab-label {
+            position: fixed;
+            bottom: 2.2rem;
+            right: 5rem;
+            background: var(--c-text);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            z-index: 200;
+        }
+
+        .coffee-fab:hover + .coffee-fab-label {
+            opacity: 1;
+        }
+
+        .coffee-drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .coffee-drawer-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .coffee-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 380px;
+            max-width: 90vw;
+            height: 100vh;
+            background: white;
+            z-index: 301;
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .coffee-drawer.open {
+            transform: translateX(0);
+        }
+
+        .coffee-drawer-header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-light) 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .coffee-drawer-header h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .coffee-drawer-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .coffee-drawer-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .coffee-drawer-body {
+            padding: 1.5rem;
+        }
+
+        .coffee-drawer-body p {
+            color: var(--c-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .coffee-drawer .coffee-card {
+            background: var(--c-bg-light);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .coffee-drawer .coffee-card:hover {
+            border-color: var(--c-primary);
+            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.08);
+        }
+
+        .coffee-drawer .coffee-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--c-text);
+            margin-bottom: 0.4rem;
+        }
+
+        .coffee-drawer .coffee-card p {
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .coffee-drawer .coffee-card .coffee-address {
+            font-size: 0.8rem;
+            color: var(--c-primary);
+            font-weight: 600;
+        }
+
+        .coffee-drawer .coffee-card .coffee-day-tag {
+            display: inline-block;
+            background: rgba(225, 29, 72, 0.1);
+            color: var(--c-primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -903,7 +1079,7 @@
             <div class="trip-info">
                 <div class="info-card">
                     <strong>旅客</strong>
-                    <span>HSU MINGEN & SYU FANGYI</span>
+                    <span>恩 & 芳</span>
                 </div>
                 <div class="info-card">
                     <strong>日期</strong>
@@ -986,7 +1162,7 @@
                     <div class="flight-detail">
                         <div>
                             <label>旅客</label>
-                            <div class="flight-detail-value">HSU MINGEN & SYU FANGYI</div>
+                            <div class="flight-detail-value">恩 & 芳</div>
                         </div>
                         <div>
                             <label>登機時間</label>
@@ -1027,7 +1203,7 @@
                     <div class="flight-detail">
                         <div>
                             <label>旅客</label>
-                            <div class="flight-detail-value">HSU MINGEN & SYU FANGYI</div>
+                            <div class="flight-detail-value">恩 & 芳</div>
                         </div>
                         <div>
                             <label>登機時間</label>
@@ -1089,60 +1265,7 @@
             </div>
         </section>
 
-        <!-- Coffee Shops Recommendations -->
-        <section class="coffee-section">
-            <h3><i class="fas fa-coffee"></i> 精品咖啡漫步地圖</h3>
-            <p style="color: var(--c-text-muted); margin-bottom: 1.5rem;">這趟蜜月專為咖啡愛好者設計 — 越南精品咖啡文化體驗</p>
-            <div class="coffee-grid">
-                <div class="coffee-card">
-                    <h4>Saigon Coffee Roastery</h4>
-                    <p>知名咖啡師 Pháp Võ 創立，自家烘焙，極簡風格。精品豆品質高，手沖細致。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> 151 Đồng Khởi, District 1
-                    </div>
-                </div>
-
-                <div class="coffee-card">
-                    <h4>The Workshop Coffee</h4>
-                    <p>工業風精品咖啡館，自家烘焙，人氣名店。採光極佳，適合待一個下午。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> 27 Ngô Đức Kế, District 1
-                    </div>
-                </div>
-
-                <div class="coffee-card">
-                    <h4>Bosgaurus Coffee Roasters</h4>
-                    <p>河景別墅咖啡廳，自烘精品豆，多款手沖。舒適環境，適合悠閒午後。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> 92 Nguyễn Hữu Cảnh, Bình Thạnh
-                    </div>
-                </div>
-
-                <div class="coffee-card">
-                    <h4>Hummingbird Café & Roastery</h4>
-                    <p>現場 15kg Probat 烘豆機運作，可觀看烘豆過程。新鮮豆度最高。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> 越南精品咖啡指標
-                    </div>
-                </div>
-
-                <div class="coffee-card">
-                    <h4>43 Factory Coffee</h4>
-                    <p>越南本土精品咖啡品牌，多間門市分布第一、三郡，品質穩定。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> 多間門市 / District 1 & 3
-                    </div>
-                </div>
-
-                <div class="coffee-card">
-                    <h4>海霸王街精品咖啡區</h4>
-                    <p>飯店門外的海霸王街本身就是咖啡廊道，每間都值得試。步行探索最舒服。</p>
-                    <div class="coffee-address">
-                        <i class="fas fa-map-marker-alt"></i> Hải Bà Trưng Street, District 3
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Coffee section moved to sidebar drawer -->
 
         <!-- Daily Itinerary -->
         <section id="itinerary">
@@ -1763,6 +1886,79 @@
         </div>
     </main>
 
+    <!-- Coffee Sidebar Drawer -->
+    <button class="coffee-fab" onclick="toggleCoffeeDrawer()" aria-label="咖啡地圖">
+        <i class="fas fa-coffee"></i>
+    </button>
+    <div class="coffee-fab-label">咖啡地圖</div>
+
+    <div class="coffee-drawer-overlay" onclick="toggleCoffeeDrawer()"></div>
+    <div class="coffee-drawer">
+        <div class="coffee-drawer-header">
+            <h3><i class="fas fa-coffee"></i> 精品咖啡地圖</h3>
+            <button class="coffee-drawer-close" onclick="toggleCoffeeDrawer()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="coffee-drawer-body">
+            <p>這趟蜜月挑了幾間自家烘焙的精品咖啡館，每間風格不同。想喝咖啡的時候翻一下，找最近的那間就好。</p>
+
+            <div class="coffee-card">
+                <h4>Saigon Coffee Roastery</h4>
+                <p>知名咖啡師 Pháp Võ 創立，自家烘焙，極簡風格。精品豆品質高，手沖細致。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> 151 Đồng Khởi, District 1
+                </div>
+                <div class="coffee-day-tag">Day 2 行程</div>
+            </div>
+
+            <div class="coffee-card">
+                <h4>The Workshop Coffee</h4>
+                <p>工業風精品咖啡館，自家烘焙，人氣名店。採光極佳，適合待一個下午。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> 27 Ngô Đức Kế, District 1
+                </div>
+                <div class="coffee-day-tag">Day 3 行程</div>
+            </div>
+
+            <div class="coffee-card">
+                <h4>Bosgaurus Coffee Roasters</h4>
+                <p>河景別墅咖啡廳，自烘精品豆，多款手沖。舒適環境，適合悠閒午後。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> 92 Nguyễn Hữu Cảnh, Bình Thạnh
+                </div>
+                <div class="coffee-day-tag">Day 4 行程</div>
+            </div>
+
+            <div class="coffee-card">
+                <h4>Hummingbird Café & Roastery</h4>
+                <p>現場 15kg Probat 烘豆機運作，可觀看烘豆過程。新鮮豆度最高。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> 越南精品咖啡指標
+                </div>
+                <div class="coffee-day-tag">備選</div>
+            </div>
+
+            <div class="coffee-card">
+                <h4>43 Factory Coffee</h4>
+                <p>越南本土精品咖啡品牌，多間門市分布第一、三郡，品質穩定。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> 多間門市 / District 1 & 3
+                </div>
+                <div class="coffee-day-tag">備選</div>
+            </div>
+
+            <div class="coffee-card">
+                <h4>海霸王街精品咖啡區</h4>
+                <p>飯店門外的海霸王街本身就是咖啡廊道，每間都值得試。步行探索最舒服。</p>
+                <div class="coffee-address">
+                    <i class="fas fa-map-marker-alt"></i> Hải Bà Trưng Street, District 3
+                </div>
+                <div class="coffee-day-tag">隨時</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>Designed with love for your honeymoon adventure 🇻🇳</p>
@@ -1829,6 +2025,13 @@
             dayTabs.forEach(tab => tab.classList.remove('active'));
             document.querySelector(`[data-day="${currentDay}"]`)?.classList.add('active');
         });
+
+        // Coffee Drawer Toggle
+        function toggleCoffeeDrawer() {
+            document.querySelector('.coffee-drawer').classList.toggle('open');
+            document.querySelector('.coffee-drawer-overlay').classList.toggle('open');
+            document.body.style.overflow = document.querySelector('.coffee-drawer').classList.contains('open') ? 'hidden' : '';
+        }
 
         // Todo Item Toggle
         document.querySelectorAll('.todo-item').forEach(item => {
