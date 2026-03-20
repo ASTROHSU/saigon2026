@@ -1010,6 +1010,179 @@
             margin-top: 0.5rem;
         }
 
+        /* Secret Backup Panel */
+        .backup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 400;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .backup-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .backup-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-height: 85vh;
+            background: white;
+            z-index: 401;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .backup-panel.open {
+            transform: translateY(0);
+        }
+
+        .backup-panel-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--c-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .backup-panel-header h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--c-text);
+        }
+
+        .backup-panel-header .secret-badge {
+            font-size: 0.7rem;
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+            color: #D1D5DB;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .backup-panel-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--c-text-muted);
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+
+        .backup-panel-body {
+            padding: 1rem 1.5rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .backup-panel-body .backup-intro {
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .backup-day-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .backup-day-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(225, 29, 72, 0.15);
+        }
+
+        .backup-card {
+            background: var(--c-bg-light);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .backup-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+        }
+
+        .backup-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--c-text);
+        }
+
+        .backup-card .backup-meal-tag {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .backup-meal-tag.breakfast { background: #FEF3C7; color: #92400E; }
+        .backup-meal-tag.lunch { background: #DBEAFE; color: #1E40AF; }
+        .backup-meal-tag.dinner { background: #EDE9FE; color: #5B21B6; }
+
+        .backup-card .backup-replace {
+            font-size: 0.75rem;
+            color: var(--c-text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .backup-card p {
+            font-size: 0.85rem;
+            color: var(--c-text);
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+        }
+
+        .backup-card .backup-meta {
+            font-size: 0.78rem;
+            color: var(--c-text-muted);
+            line-height: 1.6;
+        }
+
+        .backup-card .backup-meta strong {
+            color: var(--c-text);
+        }
+
+        .backup-card .michelin-tag {
+            display: inline-block;
+            background: rgba(225, 29, 72, 0.1);
+            color: var(--c-primary);
+            padding: 0.1rem 0.45rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .backup-panel-handle {
+            width: 40px;
+            height: 4px;
+            background: #D1D5DB;
+            border-radius: 2px;
+            margin: 0.6rem auto 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -2016,10 +2189,152 @@
         </div>
     </div>
 
+    <!-- Secret Backup Panel -->
+    <div class="backup-overlay" onclick="toggleBackupPanel()"></div>
+    <div class="backup-panel">
+        <div class="backup-panel-handle"></div>
+        <div class="backup-panel-header">
+            <div>
+                <h3><i class="fas fa-wand-magic-sparkles"></i> 備案錦囊</h3>
+                <span class="secret-badge">SECRET PLAN B</span>
+            </div>
+            <button class="backup-panel-close" onclick="toggleBackupPanel()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="backup-panel-body">
+            <p class="backup-intro">如果太太臨時想換口味，這裡都是附近的米其林推薦替代方案，已經幫你查好地點和營業時間了。</p>
+
+            <!-- Day 2 Backups -->
+            <div class="backup-day-group">
+                <div class="backup-day-label">Day 2 · 3/30 備案</div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線湯</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Phở Hòa Pasteur（如果不想吃河粉）</div>
+                    <p>1975 年開業，柬埔寨風味的 Hủ Tiếu 米線湯，配碎肉、蝦仁、豬肝。口味比河粉更清爽鮮甜。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Phượng — 40 小時燉牛尾河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bánh Xèo 46A（如果不想吃煎餅）</div>
+                    <p>必比登推薦，招牌是 40 小時慢燉牛尾河粉，膠質濃郁入口即化。5 點就開門。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（飯店 Grab 5 分鐘，離 D3 很近）<br>
+                        <i class="fas fa-clock"></i> 05:00-20:30（週一到 14:00）・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 Backups -->
+            <div class="backup-day-group">
+                <div class="backup-day-label">Day 3 · 3/31 備案</div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Việt Nam — 石鍋河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Nhà Hàng Ngon（如果不想吃越南小吃拼盤）</div>
+                    <p>米其林推薦，招牌「Phở Thố Đá」是用滾燙石鍋上桌的河粉，保溫效果超好。手工現做米線，每天新鮮製作。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 14 Phạm Hồng Thái, D1（The Workshop 附近 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-03:00（幾乎全天）・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Bếp Nhà Lục Tỉnh — 湄公河家鄉菜</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Nhà Hàng Ngon（如果想吃精緻一點的）</div>
+                    <p>庭院花園餐廳，主打湄公河六省家鄉菜。環境清幽，有池塘和綠蔭，很適合放鬆的午餐。</p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 37 Nam Kỳ Khởi Nghĩa, D1（Nhà Hàng Ngon 附近步行 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 10:00-22:00・<a href="https://www.google.com/maps/search/Bep+Nha+Luc+Tinh+37+Nam+Ky+Khoi+Nghia" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 Backups -->
+            <div class="backup-day-group">
+                <div class="backup-day-label">Day 4 · 4/1 備案</div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Hồng Phát — 柬式米線湯</h4>
+                        <span class="backup-meal-tag breakfast">替代早餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Cơm Tấm Ba Ghiền（如果不想吃碎米飯配豬排）</div>
+                    <p>跟 Day 2 同一間備案。清爽的柬埔寨風米線湯，沒有碎米飯那麼重口味，早上吃很舒服。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 391 Võ Văn Tần, D3（飯店步行 10 分鐘）<br>
+                        <i class="fas fa-clock"></i> 早上開門・<a href="https://www.google.com/maps/search/Hong+Phat+391+Vo+Van+Tan+District+3" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Bún Bò Huế 14B — 順化辣牛肉河粉</h4>
+                        <span class="backup-meal-tag dinner">替代晚餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代永慶街海鮮（如果不想吃海鮮大排檔）</div>
+                    <p>必比登推薦，順化經典牛肉米線，辣香濃郁湯底配牛腱、牛筋、魚餅。只有兩張桌子的街邊攤，在地到不行。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 14B Đường 46, D4（跟永慶街同區，Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:30-20:30・<a href="https://www.google.com/maps/search/Bun+Bo+Hue+14B+District+4" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 Backups -->
+            <div class="backup-day-group">
+                <div class="backup-day-label">Day 5 · 4/2 備案</div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Việt Nam — 石鍋河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bếp Mẹ Ỉn（如果不想吃家常菜）</div>
+                    <p>同 Day 3 備案。石鍋河粉，手工米線，幾乎 24 小時營業。最後一餐用一碗道地河粉收尾也很完美。<span class="michelin-tag">米其林推薦</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 14 Phạm Hồng Thái, D1（Bếp Mẹ Ỉn 附近步行 8 分鐘）<br>
+                        <i class="fas fa-clock"></i> 06:00-03:00・<a href="https://www.google.com/maps/search/Pho+Viet+Nam+14+Pham+Hong+Thai+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+
+                <div class="backup-card">
+                    <div class="backup-card-header">
+                        <h4>Phở Phượng — 40 小時燉牛尾河粉</h4>
+                        <span class="backup-meal-tag lunch">替代午餐</span>
+                    </div>
+                    <div class="backup-replace">→ 替代 Bếp Mẹ Ỉn（如果想吃湯麵類的）</div>
+                    <p>離飯店很近的必比登河粉，牛尾燉到入口即化。如果 Day 2 沒用到這個備案，最後一天可以來。<span class="michelin-tag">必比登</span></p>
+                    <div class="backup-meta">
+                        <i class="fas fa-map-marker-alt"></i> 25 Hoàng Sa, D1（飯店 Grab 5 分鐘）<br>
+                        <i class="fas fa-clock"></i> 05:00-20:30・<a href="https://www.google.com/maps/search/Pho+Phuong+25+Hoang+Sa+District+1" target="_blank">Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>Designed with love for your honeymoon adventure 🇻🇳</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Saigon, March 29 - April 2, 2026 — Relaxation First</p>
+        <p id="secret-trigger" style="margin-top: 0.5rem; font-size: 0.85rem; cursor: default; -webkit-user-select: none; user-select: none;">Saigon, March 29 - April 2, 2026 — Relaxation First</p>
     </footer>
 
     <script>
@@ -2096,6 +2411,30 @@
                 this.classList.toggle('completed');
             });
         });
+
+        // Secret Backup Panel - triple tap on footer "Relaxation First"
+        let secretTapCount = 0;
+        let secretTapTimer = null;
+        const secretTrigger = document.getElementById('secret-trigger');
+
+        if (secretTrigger) {
+            secretTrigger.addEventListener('click', function() {
+                secretTapCount++;
+                if (secretTapTimer) clearTimeout(secretTapTimer);
+                if (secretTapCount >= 3) {
+                    secretTapCount = 0;
+                    toggleBackupPanel();
+                } else {
+                    secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 800);
+                }
+            });
+        }
+
+        function toggleBackupPanel() {
+            document.querySelector('.backup-panel').classList.toggle('open');
+            document.querySelector('.backup-overlay').classList.toggle('open');
+            document.body.style.overflow = document.querySelector('.backup-panel').classList.contains('open') ? 'hidden' : '';
+        }
     </script>
 </body>
 </html>
