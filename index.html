@@ -390,16 +390,18 @@
         .currency-input-group {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
         .currency-input {
+            width: 0;
             flex: 1;
-            font-size: 1.8rem;
+            min-width: 0;
+            font-size: 1.6rem;
             font-weight: 700;
             font-family: 'Outfit', sans-serif;
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.75rem;
             border: 2px solid #F59E0B;
             border-radius: var(--radius-sm);
             background: white;
@@ -407,6 +409,7 @@
             text-align: right;
             outline: none;
             transition: var(--transition);
+            -webkit-appearance: none;
         }
 
         .currency-input:focus {
@@ -417,65 +420,69 @@
         .currency-input::placeholder {
             color: #D4A574;
             font-weight: 400;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .currency-suffix {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: #92400E;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .currency-result {
             background: white;
             border-radius: var(--radius-sm);
-            padding: 1.25rem;
+            padding: 1rem;
             text-align: center;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
         .currency-result-value {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             font-family: 'Outfit', sans-serif;
             color: var(--c-primary);
         }
 
         .currency-result-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--c-text-muted);
             margin-top: 0.25rem;
         }
 
         .currency-hint {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #92400E;
             margin-top: 0.75rem;
             text-align: center;
             opacity: 0.8;
+            line-height: 1.5;
         }
 
         .currency-presets {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+            justify-content: center;
         }
 
         .currency-preset {
-            padding: 0.4rem 0.8rem;
+            padding: 0.35rem 0.7rem;
             border-radius: 20px;
             border: 1px solid #F59E0B;
             background: white;
             color: #92400E;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .currency-preset:hover {
+        .currency-preset:hover, .currency-preset:active {
             background: #F59E0B;
             color: white;
         }
@@ -1644,6 +1651,19 @@
             .coffee-grid {
                 grid-template-columns: 1fr;
             }
+
+            .currency-section {
+                padding: 1.25rem;
+            }
+
+            .currency-input {
+                font-size: 1.4rem;
+                padding: 0.5rem 0.6rem;
+            }
+
+            .currency-result-value {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
@@ -1670,6 +1690,28 @@
 
     <!-- Main Content -->
     <main>
+        <!-- Currency Converter Section -->
+        <section class="currency-section">
+            <h3><i class="fas fa-money-bill-wave"></i> 越南盾換算台幣</h3>
+            <div class="currency-input-group">
+                <input type="text" inputmode="numeric" class="currency-input" id="vnd-input" placeholder="輸入金額">
+                <div class="currency-suffix">× 1,000 VND</div>
+            </div>
+            <div class="currency-result">
+                <div class="currency-result-value" id="twd-result">NT$ 0</div>
+                <div class="currency-result-label">約等於台幣（匯率 1 TWD ≈ 822 VND）</div>
+            </div>
+            <div class="currency-hint">輸入前面幾位數就好，自動乘以 1,000。例如輸入 50 = 50,000 VND ≈ NT$61</div>
+            <div class="currency-presets">
+                <button class="currency-preset" data-vnd="30">咖啡 30k</button>
+                <button class="currency-preset" data-vnd="50">河粉 50k</button>
+                <button class="currency-preset" data-vnd="100">小吃 100k</button>
+                <button class="currency-preset" data-vnd="200">餐廳 200k</button>
+                <button class="currency-preset" data-vnd="500">按摩 500k</button>
+                <button class="currency-preset" data-vnd="1000">大餐 1000k</button>
+            </div>
+        </section>
+
         <!-- Hero Section -->
         <section class="hero">
             <h1>2026 越南胡志明蜜月旅行 🇻🇳</h1>
@@ -1691,28 +1733,6 @@
                     <strong>住宿</strong>
                     <span>Signature by M Village, District 3</span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Currency Converter Section -->
-        <section class="currency-section">
-            <h3><i class="fas fa-money-bill-wave"></i> 越南盾換算台幣</h3>
-            <div class="currency-input-group">
-                <input type="text" inputmode="numeric" class="currency-input" id="vnd-input" placeholder="輸入金額">
-                <div class="currency-suffix">× 1,000 VND</div>
-            </div>
-            <div class="currency-result">
-                <div class="currency-result-value" id="twd-result">NT$ 0</div>
-                <div class="currency-result-label">約等於台幣（匯率 1 TWD ≈ 822 VND）</div>
-            </div>
-            <div class="currency-hint">輸入前面幾位數就好，自動乘以 1,000。例如輸入 50 = 50,000 VND ≈ NT$61</div>
-            <div class="currency-presets">
-                <button class="currency-preset" data-vnd="30">咖啡 30k</button>
-                <button class="currency-preset" data-vnd="50">河粉 50k</button>
-                <button class="currency-preset" data-vnd="100">小吃 100k</button>
-                <button class="currency-preset" data-vnd="200">餐廳 200k</button>
-                <button class="currency-preset" data-vnd="500">按摩 500k</button>
-                <button class="currency-preset" data-vnd="1000">大餐 1000k</button>
             </div>
         </section>
 
