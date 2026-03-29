@@ -3518,52 +3518,59 @@
             document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
         }
 
-        // Expense Tracker
+        // Expense Tracker (cloud-synced via jsonblob)
         (function() {
+            var BLOB_ID = '019d3933-1f35-7d30-a052-b86674afc43f';
+            var BLOB_URL = 'https://jsonblob.com/api/jsonBlob/' + BLOB_ID;
             var STORAGE_KEY = 'saigon2026_expenses_v2';
             var currentPayer = 'star';
             var catRow = document.getElementById('expense-category-row');
             var payerRow = document.getElementById('expense-payer-row');
+            var syncing = false;
 
-            // Pre-populated expenses (from planning phase)
-            var DEFAULT_EXPENSES = [
-                { memo: '✈️ 機票', twd: 15525, vnd: 0, payer: 'star', time: '2026-02-20T00:00:00.000Z', currency: 'TWD' },
-                { memo: '📋 簽證', twd: 1640, vnd: 0, payer: 'star', time: '2026-03-11T00:00:00.000Z', currency: 'TWD' },
-                { memo: '🏨 住宿', twd: 13221, vnd: 0, payer: 'astro', time: '2026-03-11T00:00:00.000Z', currency: 'TWD' },
-                { memo: '💆 按摩', twd: 1084, vnd: 0, payer: 'astro', time: '2026-03-22T00:00:00.000Z', currency: 'TWD' },
-                { memo: '🛡️ 保險', twd: 990, vnd: 0, payer: 'star', time: '2026-03-28T00:00:00.000Z', currency: 'TWD' },
-                { memo: '🚐 機場接送', twd: 920, vnd: 0, payer: 'star', time: '2026-03-28T00:00:00.000Z', currency: 'TWD' }
-            ];
-
-            // Initialize: use saved data, or defaults if first time
-            var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-            if (expenses === null) {
-                // Migrate from old key if exists
-                var oldData = JSON.parse(localStorage.getItem('saigon2026_expenses') || 'null');
-                if (oldData && oldData.length > 0) {
-                    // Add default payer to old entries that don't have one
-                    expenses = DEFAULT_EXPENSES.slice();
-                    for (var oi = 0; oi < oldData.length; oi++) {
-                        var oe = oldData[oi];
-                        if (!oe.payer) oe.payer = 'star';
-                        if (!oe.currency) oe.currency = 'VND';
-                        // Avoid duplicating default entries by checking memo
-                        var isDup = false;
-                        for (var di = 0; di < expenses.length; di++) {
-                            if (expenses[di].memo === oe.memo && expenses[di].twd === oe.twd) { isDup = true; break; }
-                        }
-                        if (!isDup) expenses.push(oe);
-                    }
-                    localStorage.removeItem('saigon2026_expenses');
-                } else {
-                    expenses = DEFAULT_EXPENSES.slice();
-                }
-                saveExpenses();
-            }
+            // Load from localStorage first (instant), then sync from cloud
+            var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
             function saveExpenses() {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+                // Sync to cloud
+                if (!syncing) {
+                    syncing = true;
+                    fetch(BLOB_URL, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(expenses)
+                    }).then(function() { syncing = false; })
+                      .catch(function() { syncing = false; });
+                }
             }
+
+            // Pull from cloud on page load
+            function syncFromCloud() {
+                fetch(BLOB_URL)
+                    .then(function(r) { return r.json(); })
+                    .then(function(cloudData) {
+                        if (cloudData && cloudData.length > 0) {
+                            // Merge: cloud is source of truth if it has more data
+                            // Use cloud data, but also add any local-only entries
+                            var merged = cloudData.slice();
+                            for (var i = 0; i < expenses.length; i++) {
+                                var local = expenses[i];
+                                var found = false;
+                                for (var j = 0; j < merged.length; j++) {
+                                    if (merged[j].memo === local.memo && merged[j].twd === local.twd && merged[j].time === local.time) {
+                                        found = true; break;
+                                    }
+                                }
+                                if (!found) merged.push(local);
+                            }
+                            expenses = merged;
+                            localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+                            renderExpenses();
+                        }
+                    }).catch(function() { /* offline, use local */ });
+            }
+            syncFromCloud();
 
             function getCurrentTwd() {
                 var raw = parseFloat(document.getElementById('vnd-input').value);
