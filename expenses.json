@@ -1,8 +1,74 @@
 [
-  {"memo":"✈️ 機票","twd":15525,"vnd":0,"payer":"star","time":"2026-02-20T00:00:00.000Z","currency":"TWD"},
-  {"memo":"📋 簽證","twd":1640,"vnd":0,"payer":"star","time":"2026-03-11T00:00:00.000Z","currency":"TWD"},
-  {"memo":"🏨 住宿","twd":13221,"vnd":0,"payer":"astro","time":"2026-03-11T00:00:00.000Z","currency":"TWD"},
-  {"memo":"💆 按摩","twd":1084,"vnd":0,"payer":"astro","time":"2026-03-22T00:00:00.000Z","currency":"TWD"},
-  {"memo":"🛡️ 保險","twd":990,"vnd":0,"payer":"star","time":"2026-03-28T00:00:00.000Z","currency":"TWD"},
-  {"memo":"🚐 機場接送","twd":920,"vnd":0,"payer":"star","time":"2026-03-28T00:00:00.000Z","currency":"TWD"}
+  {
+    "memo": "✈️ 機票",
+    "twd": 15525,
+    "vnd": 0,
+    "payer": "star",
+    "time": "2026-02-20T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "📋 簽證",
+    "twd": 1640,
+    "vnd": 0,
+    "payer": "star",
+    "time": "2026-03-11T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "🏨 住宿",
+    "twd": 13221,
+    "vnd": 0,
+    "payer": "astro",
+    "time": "2026-03-11T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "💆 按摩",
+    "twd": 1084,
+    "vnd": 0,
+    "payer": "astro",
+    "time": "2026-03-22T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "🛡️ 保險",
+    "twd": 990,
+    "vnd": 0,
+    "payer": "star",
+    "time": "2026-03-28T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "🚐 機場接送",
+    "twd": 920,
+    "vnd": 0,
+    "payer": "star",
+    "time": "2026-03-28T00:00:00.000Z",
+    "currency": "TWD"
+  },
+  {
+    "memo": "🛵 交通",
+    "twd": 93,
+    "vnd": 77000,
+    "payer": "star",
+    "time": "2026-03-29T07:04:46.855Z",
+    "currency": "VND"
+  },
+  {
+    "memo": "🍽️ 餐廳",
+    "twd": 2694,
+    "vnd": 2222640,
+    "payer": "star",
+    "time": "2026-03-29T07:04:55.641Z",
+    "currency": "VND"
+  },
+  {
+    "memo": "🧃 飲料",
+    "twd": 149,
+    "vnd": 123000,
+    "payer": "star",
+    "time": "2026-03-29T10:24:42.302Z",
+    "currency": "VND"
+  }
 ]
