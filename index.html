@@ -3545,28 +3545,35 @@
                 }
             }
 
-            // Pull from cloud on page load
+            // Pull from cloud on page load, merge, then push back
             function syncFromCloud() {
                 fetch(BLOB_URL)
                     .then(function(r) { return r.json(); })
                     .then(function(cloudData) {
-                        if (cloudData && cloudData.length > 0) {
-                            // Merge: cloud is source of truth if it has more data
-                            // Use cloud data, but also add any local-only entries
-                            var merged = cloudData.slice();
-                            for (var i = 0; i < expenses.length; i++) {
-                                var local = expenses[i];
-                                var found = false;
-                                for (var j = 0; j < merged.length; j++) {
-                                    if (merged[j].memo === local.memo && merged[j].twd === local.twd && merged[j].time === local.time) {
-                                        found = true; break;
-                                    }
+                        if (!cloudData) cloudData = [];
+                        // Merge both directions
+                        var merged = cloudData.slice();
+                        var hasNew = false;
+                        for (var i = 0; i < expenses.length; i++) {
+                            var local = expenses[i];
+                            var found = false;
+                            for (var j = 0; j < merged.length; j++) {
+                                if (merged[j].memo === local.memo && merged[j].twd === local.twd && merged[j].time === local.time) {
+                                    found = true; break;
                                 }
-                                if (!found) merged.push(local);
                             }
-                            expenses = merged;
-                            localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
-                            renderExpenses();
+                            if (!found) { merged.push(local); hasNew = true; }
+                        }
+                        expenses = merged;
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+                        renderExpenses();
+                        // Push merged result back to cloud if we had local-only entries
+                        if (hasNew || merged.length !== cloudData.length) {
+                            fetch(BLOB_URL, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(expenses)
+                            });
                         }
                     }).catch(function() { /* offline, use local */ });
             }
