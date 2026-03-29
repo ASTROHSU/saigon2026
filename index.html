@@ -1451,6 +1451,50 @@
         .expense-details summary::-webkit-details-marker { display: none; }
         .expense-details summary::marker { display: none; content: ''; }
 
+        /* Auto-collapse past sections */
+        .past-details {
+            margin-bottom: 0.5rem;
+        }
+
+        .past-details summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 0.6rem 1rem;
+            background: var(--c-glass);
+            border: 1px solid var(--c-border);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--c-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .past-details summary::-webkit-details-marker { display: none; }
+        .past-details summary::marker { display: none; content: ''; }
+
+        .past-details summary::after {
+            content: '▸';
+            margin-left: auto;
+            transition: transform 0.2s ease;
+            font-size: 0.75rem;
+        }
+
+        .past-details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        .past-details[open] summary {
+            margin-bottom: 0.5rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .past-details .past-content {
+            opacity: 0.5;
+        }
+
         /* Expired Days Styling */
         .backup-day-group.backup-day-expired {
             opacity: 0.45;
@@ -1637,7 +1681,7 @@
             <p class="section-subtitle">星宇航空 — 舒適開啟蜜月之旅</p>
 
             <!-- Outbound Flight -->
-            <div class="glass-card flight-card">
+            <div class="glass-card flight-card" data-trip-date="2026-03-29" data-collapse-label="去程 JX 711 · 3/29 已抵達">
                 <div class="flight-header">
                     <div>
                         <span><i class="fas fa-plane"></i> 星宇航空 JX 711 — 去程</span>
@@ -1726,7 +1770,7 @@
         </section>
 
         <!-- Accommodation Section -->
-        <section id="accommodation">
+        <section id="accommodation" data-trip-date="2026-03-29" data-collapse-label="住宿 · Signature by M Village（已入住）">
             <h2 class="section-title"><i class="fas fa-hotel"></i> 住宿地點</h2>
             <p class="section-subtitle">Signature by M Village — 海霸王街（第三郡）</p>
 
@@ -1765,7 +1809,7 @@
             <p class="section-subtitle">放鬆為主，每天只有 2-3 個活動，其餘時間自由探索與休息</p>
 
             <!-- Day 1 -->
-            <div class="day-section" id="day-1">
+            <div class="day-section" id="day-1" data-trip-date="2026-03-29" data-collapse-label="Day 1 · 3/29 抵達與奢華開場">
                 <div class="day-header">
                     <h2>Day 1: 3月29日 (週日)</h2>
                     <p>抵達與奢華開場</p>
@@ -1870,7 +1914,7 @@
             </div>
 
             <!-- Day 2 -->
-            <div class="day-section" id="day-2">
+            <div class="day-section" id="day-2" data-trip-date="2026-03-30" data-collapse-label="Day 2 · 3/30 米其林美食巡禮">
                 <div class="day-header">
                     <h2>Day 2: 3月30日 (週一)</h2>
                     <p>米其林美食巡禮</p>
@@ -2004,7 +2048,7 @@
             </div>
 
             <!-- Day 3 -->
-            <div class="day-section" id="day-3">
+            <div class="day-section" id="day-3" data-trip-date="2026-03-31" data-collapse-label="Day 3 · 3/31 在地味覺與放鬆">
                 <div class="day-header">
                     <h2>Day 3: 3月31日 (週二)</h2>
                     <p>在地味覺與放鬆</p>
@@ -2204,7 +2248,7 @@
             </div>
 
             <!-- Day 4 -->
-            <div class="day-section" id="day-4">
+            <div class="day-section" id="day-4" data-trip-date="2026-04-01" data-collapse-label="Day 4 · 4/1 深度探索日">
                 <div class="day-header">
                     <h2>Day 4: 4月1日 (週三)</h2>
                     <p>深度體驗日（可走遠一點的一天）</p>
@@ -2329,7 +2373,7 @@
             </div>
 
             <!-- Day 5 -->
-            <div class="day-section" id="day-5">
+            <div class="day-section" id="day-5" data-trip-date="2026-04-02" data-collapse-label="Day 5 · 4/2 最後巡禮">
                 <div class="day-header">
                     <h2>Day 5: 4月2日 (週四)</h2>
                     <p>慢慢收尾</p>
@@ -3087,7 +3131,36 @@
             });
         }
 
-        // (Budget estimate removed)
+        // Auto-collapse past sections based on Vietnam time (UTC+7)
+        (function() {
+            var now = new Date();
+            // Vietnam is UTC+7
+            var vnOffset = 7 * 60;
+            var localOffset = now.getTimezoneOffset();
+            var vnTime = new Date(now.getTime() + (vnOffset + localOffset) * 60000);
+            var todayStr = vnTime.getFullYear() + '-' +
+                String(vnTime.getMonth() + 1).padStart(2, '0') + '-' +
+                String(vnTime.getDate()).padStart(2, '0');
+
+            var els = document.querySelectorAll('[data-trip-date]');
+            els.forEach(function(el) {
+                var tripDate = el.getAttribute('data-trip-date');
+                var label = el.getAttribute('data-collapse-label') || '已完成';
+                if (tripDate < todayStr) {
+                    // This section is in the past — wrap in <details>
+                    var details = document.createElement('details');
+                    details.className = 'past-details';
+                    var summary = document.createElement('summary');
+                    summary.innerHTML = '<i class="fas fa-check-circle" style="color:var(--c-success);"></i> ' + label;
+                    details.appendChild(summary);
+                    var wrapper = document.createElement('div');
+                    wrapper.className = 'past-content';
+                    el.parentNode.insertBefore(details, el);
+                    wrapper.appendChild(el);
+                    details.appendChild(wrapper);
+                }
+            });
+        })();
 
         // Expense Tracker (cloud-synced via GitHub)
         (function() {
