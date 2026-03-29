@@ -369,6 +369,38 @@
         }
 
         /* Expense Tracker */
+        .expense-payer-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 2px solid var(--c-border);
+            background: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            margin: 0 0.2rem;
+        }
+
+        .expense-payer-btn.active {
+            border-color: var(--c-primary);
+            background: #FEF2F2;
+            color: var(--c-primary);
+        }
+
+        .expense-payer-summary {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .expense-payer-summary span {
+            font-family: 'Outfit', sans-serif;
+        }
+
         .expense-cat-btn {
             padding: 0.45rem 0.7rem;
             border-radius: 20px;
@@ -1688,7 +1720,12 @@
                 <p class="converter-rate-note" id="rate-note">匯率參考：1 TWD ≈ 825 VND</p>
 
                 <!-- Expense Tracker -->
-                <div class="expense-category-row" id="expense-category-row" style="display:none;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem;justify-content:center;">
+                <div id="expense-payer-row" style="display:none;margin-top:0.75rem;text-align:center;">
+                    <span style="font-size:0.82rem;color:var(--c-text-muted);font-weight:600;margin-right:0.4rem;">誰付的：</span>
+                    <button class="expense-payer-btn active" id="payer-star" onclick="setPayer('star')">⭐ 芳</button>
+                    <button class="expense-payer-btn" id="payer-astro" onclick="setPayer('astro')">🚀 恩</button>
+                </div>
+                <div class="expense-category-row" id="expense-category-row" style="display:none;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;justify-content:center;">
                     <button class="expense-cat-btn" onclick="addExpenseWithCategory('🍜 河粉')">🍜 河粉</button>
                     <button class="expense-cat-btn" onclick="addExpenseWithCategory('☕ 咖啡')">☕ 咖啡</button>
                     <button class="expense-cat-btn" onclick="addExpenseWithCategory('🍻 酒吧')">🍻 酒吧</button>
@@ -1707,8 +1744,9 @@
                         <span class="expense-list-title"><i class="fas fa-receipt"></i> 旅途花費</span>
                         <span class="expense-list-total" id="expense-total">NT$ 0</span>
                     </div>
+                    <div class="expense-payer-summary" id="expense-payer-summary"></div>
                     <div id="expense-items">
-                        <div class="expense-empty" id="expense-empty">還沒有記帳，換算後點 emoji 分類即可記帳</div>
+                        <div class="expense-empty">還沒有記帳，換算後選誰付的、點 emoji 即可記帳</div>
                     </div>
                 </div>
             </div>
@@ -3487,9 +3525,27 @@
 
         // Expense Tracker
         (function() {
-            var STORAGE_KEY = 'saigon2026_expenses';
-            var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            var STORAGE_KEY = 'saigon2026_expenses_v2';
+            var currentPayer = 'star';
             var catRow = document.getElementById('expense-category-row');
+            var payerRow = document.getElementById('expense-payer-row');
+
+            // Pre-populated expenses (from planning phase)
+            var DEFAULT_EXPENSES = [
+                { memo: '✈️ 機票', twd: 15525, vnd: 0, payer: 'star', time: '2026-02-20T00:00:00.000Z', currency: 'TWD' },
+                { memo: '📋 簽證', twd: 1640, vnd: 0, payer: 'star', time: '2026-03-11T00:00:00.000Z', currency: 'TWD' },
+                { memo: '🏨 住宿', twd: 13221, vnd: 0, payer: 'astro', time: '2026-03-11T00:00:00.000Z', currency: 'TWD' },
+                { memo: '💆 按摩', twd: 1084, vnd: 0, payer: 'astro', time: '2026-03-22T00:00:00.000Z', currency: 'TWD' },
+                { memo: '🛡️ 保險', twd: 990, vnd: 0, payer: 'star', time: '2026-03-28T00:00:00.000Z', currency: 'TWD' },
+                { memo: '🚐 機場接送', twd: 920, vnd: 0, payer: 'star', time: '2026-03-28T00:00:00.000Z', currency: 'TWD' }
+            ];
+
+            // Initialize: use saved data, or defaults if first time
+            var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+            if (expenses === null) {
+                expenses = DEFAULT_EXPENSES.slice();
+                saveExpenses();
+            }
 
             function saveExpenses() {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
@@ -3509,12 +3565,21 @@
                 return raw * unit;
             }
 
-            // Show/hide emoji categories when converter has a value
+            // Payer selection
+            window.setPayer = function(p) {
+                currentPayer = p;
+                document.getElementById('payer-star').classList.toggle('active', p === 'star');
+                document.getElementById('payer-astro').classList.toggle('active', p === 'astro');
+            };
+
+            // Show/hide emoji categories + payer when converter has a value
             var origRunConverter = window.runConverter;
             window.runConverter = function() {
                 origRunConverter();
                 var raw = parseFloat(document.getElementById('vnd-input').value);
-                catRow.style.display = (!isNaN(raw) && raw > 0) ? 'flex' : 'none';
+                var show = !isNaN(raw) && raw > 0;
+                catRow.style.display = show ? 'flex' : 'none';
+                payerRow.style.display = show ? 'block' : 'none';
             };
 
             window.addExpenseWithCategory = function(category) {
@@ -3525,11 +3590,12 @@
                     memo: category,
                     twd: twd,
                     vnd: vnd,
-                    time: new Date().toISOString()
+                    payer: currentPayer,
+                    time: new Date().toISOString(),
+                    currency: 'VND'
                 });
                 saveExpenses();
                 renderExpenses();
-                // Clear converter
                 document.getElementById('vnd-input').value = '';
                 runConverter();
             };
@@ -3543,34 +3609,45 @@
             function renderExpenses() {
                 var container = document.getElementById('expense-items');
                 var totalEl = document.getElementById('expense-total');
+                var summaryEl = document.getElementById('expense-payer-summary');
 
                 if (expenses.length === 0) {
-                    container.innerHTML = '<div class="expense-empty">還沒有記帳，換算後點 emoji 分類即可記帳</div>';
+                    container.innerHTML = '<div class="expense-empty">還沒有記帳，換算後選誰付的、點 emoji 即可記帳</div>';
                     totalEl.textContent = 'NT$ 0';
+                    summaryEl.innerHTML = '';
                     return;
                 }
 
-                var total = 0;
+                var total = 0, starTotal = 0, astroTotal = 0;
                 var html = '';
                 for (var i = expenses.length - 1; i >= 0; i--) {
                     var e = expenses[i];
                     total += e.twd;
+                    if (e.payer === 'astro') astroTotal += e.twd;
+                    else starTotal += e.twd;
+
                     var t = new Date(e.time);
-                    var timeStr = (t.getMonth() + 1) + '/' + t.getDate() + ' ' + t.getHours().toString().padStart(2, '0') + ':' + t.getMinutes().toString().padStart(2, '0');
+                    var timeStr = (t.getMonth() + 1) + '/' + t.getDate();
+                    var payerIcon = e.payer === 'astro' ? '🚀' : '⭐';
+                    var vndStr = (e.vnd && e.vnd > 0) ? '<div style="font-size:0.7rem;color:var(--c-text-muted);">' + e.vnd.toLocaleString() + ' ₫</div>' : '';
+
                     html += '<div class="expense-item">'
                         + '<div class="expense-item-left">'
                         + '<span class="expense-item-delete" onclick="deleteExpense(' + i + ')"><i class="fas fa-times-circle"></i></span>'
+                        + '<span style="font-size:0.75rem;">' + payerIcon + '</span>'
                         + '<span class="expense-item-memo">' + e.memo + '</span>'
-                        + '<span style="font-size:0.75rem;color:var(--c-text-muted);">' + timeStr + '</span>'
+                        + '<span style="font-size:0.7rem;color:var(--c-text-muted);">' + timeStr + '</span>'
                         + '</div>'
                         + '<div style="text-align:right;flex-shrink:0;">'
                         + '<span class="expense-item-amount">NT$ ' + e.twd.toLocaleString() + '</span>'
-                        + '<div style="font-size:0.7rem;color:var(--c-text-muted);">' + e.vnd.toLocaleString() + ' ₫</div>'
+                        + vndStr
                         + '</div>'
                         + '</div>';
                 }
                 container.innerHTML = html;
                 totalEl.textContent = 'NT$ ' + total.toLocaleString();
+                summaryEl.innerHTML = '<span>⭐ 芳：NT$ ' + starTotal.toLocaleString() + '</span>'
+                    + '<span>🚀 恩：NT$ ' + astroTotal.toLocaleString() + '</span>';
             }
 
             renderExpenses();
