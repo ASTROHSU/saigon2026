@@ -221,6 +221,129 @@
             transform: translateY(-2px);
         }
 
+        /* Currency Converter */
+        .converter-card {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .converter-input-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .converter-input-row input[type="number"] {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            font-size: 1.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            color: var(--c-text);
+            background: var(--c-bg);
+            transition: var(--transition);
+            outline: none;
+            min-width: 0;
+        }
+
+        .converter-input-row input[type="number"]:focus {
+            border-color: var(--c-primary);
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+        }
+
+        .converter-input-row input[type="number"]::-webkit-inner-spin-button,
+        .converter-input-row input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .converter-unit-select {
+            padding: 0.75rem 0.75rem;
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 600;
+            color: var(--c-text);
+            background: var(--c-bg);
+            cursor: pointer;
+            outline: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .converter-unit-select:focus {
+            border-color: var(--c-primary);
+        }
+
+        .converter-currency-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--c-text-muted);
+            white-space: nowrap;
+        }
+
+        .converter-result {
+            background: linear-gradient(135deg, #FEF2F2 0%, #FFF5F5 100%);
+            border: 2px solid #FECDD3;
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .converter-result-label {
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            font-weight: 500;
+        }
+
+        .converter-result-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--c-primary);
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .converter-rate-note {
+            font-size: 0.78rem;
+            color: var(--c-text-muted);
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .converter-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .converter-preset-btn {
+            padding: 0.4rem 0.75rem;
+            border: 1.5px solid var(--c-border);
+            border-radius: 999px;
+            background: var(--c-bg);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--c-text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .converter-preset-btn:hover {
+            border-color: var(--c-primary);
+            color: var(--c-primary);
+            background: #FFF0F2;
+        }
+
         /* Status Badge */
         .status-badge {
             display: inline-flex;
@@ -1733,6 +1856,42 @@
             </div>
         </section>
 
+        <!-- Currency Converter Section -->
+        <section id="currency">
+            <h2 class="section-title"><i class="fas fa-coins"></i> 越南盾換算</h2>
+            <p class="section-subtitle">VND → TWD 即時換算，輸入前幾位數就好</p>
+            <div class="glass-card converter-card">
+                <div class="converter-presets">
+                    <span style="font-size:0.82rem;color:var(--c-text-muted);font-weight:600;align-self:center;margin-right:0.2rem;">快速：</span>
+                    <button class="converter-preset-btn" data-vnd="50000">5萬</button>
+                    <button class="converter-preset-btn" data-vnd="100000">10萬</button>
+                    <button class="converter-preset-btn" data-vnd="200000">20萬</button>
+                    <button class="converter-preset-btn" data-vnd="500000">50萬</button>
+                    <button class="converter-preset-btn" data-vnd="1000000">100萬</button>
+                </div>
+                <div class="converter-input-row">
+                    <input type="number" id="vnd-input" placeholder="輸入金額" min="0" inputmode="decimal">
+                    <select class="converter-unit-select" id="vnd-unit">
+                        <option value="1">元</option>
+                        <option value="1000" selected>千（×1,000）</option>
+                        <option value="10000">萬（×10,000）</option>
+                    </select>
+                    <span class="converter-currency-label">VND</span>
+                </div>
+                <div class="converter-result">
+                    <div>
+                        <div class="converter-result-label">換算台幣約</div>
+                        <div class="converter-result-value" id="twd-result">—</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="converter-result-label">實際越南盾</div>
+                        <div style="font-size:0.95rem;font-weight:700;color:var(--c-text-muted);font-family:'Outfit',sans-serif;" id="vnd-actual">—</div>
+                    </div>
+                </div>
+                <p class="converter-rate-note" id="rate-note">匯率參考：1 TWD ≈ 770 VND（固定參考值，實際以換匯當日為準）</p>
+            </div>
+        </section>
+
         <!-- Coffee section moved to sidebar drawer -->
 
         <!-- Daily Itinerary -->
@@ -3092,6 +3251,43 @@
     </footer>
 
     <script>
+        // Currency Converter (VND → TWD)
+        const VND_PER_TWD = 770; // 1 TWD ≈ 770 VND
+
+        function formatVND(n) {
+            if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + ' 百萬 VND';
+            if (n >= 1000) return (n / 1000).toLocaleString() + ' 千 VND';
+            return n.toLocaleString() + ' VND';
+        }
+
+        function runConverter() {
+            const raw = parseFloat(document.getElementById('vnd-input').value);
+            const unit = parseInt(document.getElementById('vnd-unit').value);
+            const resultEl = document.getElementById('twd-result');
+            const actualEl = document.getElementById('vnd-actual');
+            if (isNaN(raw) || raw <= 0) {
+                resultEl.textContent = '—';
+                actualEl.textContent = '—';
+                return;
+            }
+            const vnd = raw * unit;
+            const twd = vnd / VND_PER_TWD;
+            resultEl.textContent = 'NT$ ' + Math.round(twd).toLocaleString();
+            actualEl.textContent = vnd.toLocaleString() + ' ₫';
+        }
+
+        document.getElementById('vnd-input').addEventListener('input', runConverter);
+        document.getElementById('vnd-unit').addEventListener('change', runConverter);
+
+        document.querySelectorAll('.converter-preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const vnd = parseInt(btn.dataset.vnd);
+                document.getElementById('vnd-unit').value = '1';
+                document.getElementById('vnd-input').value = vnd;
+                runConverter();
+            });
+        });
+
         // Countdown Timer
         function updateCountdown() {
             const tripDate = new Date('2026-03-29T00:00:00').getTime();
