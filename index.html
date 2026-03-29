@@ -3264,8 +3264,8 @@
             actualEl.textContent = vnd.toLocaleString() + ' ₫';
         }
 
-        document.getElementById('vnd-input').addEventListener('input', runConverter);
-        document.getElementById('vnd-unit').addEventListener('change', runConverter);
+        document.getElementById('vnd-input').addEventListener('input', function() { runConverter(); });
+        document.getElementById('vnd-unit').addEventListener('change', function() { runConverter(); });
 
         document.querySelectorAll('.converter-preset-btn').forEach(btn => {
             btn.addEventListener('click', () => {
