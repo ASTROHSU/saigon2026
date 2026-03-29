@@ -3538,7 +3538,26 @@
             // Initialize: use saved data, or defaults if first time
             var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
             if (expenses === null) {
-                expenses = DEFAULT_EXPENSES.slice();
+                // Migrate from old key if exists
+                var oldData = JSON.parse(localStorage.getItem('saigon2026_expenses') || 'null');
+                if (oldData && oldData.length > 0) {
+                    // Add default payer to old entries that don't have one
+                    expenses = DEFAULT_EXPENSES.slice();
+                    for (var oi = 0; oi < oldData.length; oi++) {
+                        var oe = oldData[oi];
+                        if (!oe.payer) oe.payer = 'star';
+                        if (!oe.currency) oe.currency = 'VND';
+                        // Avoid duplicating default entries by checking memo
+                        var isDup = false;
+                        for (var di = 0; di < expenses.length; di++) {
+                            if (expenses[di].memo === oe.memo && expenses[di].twd === oe.twd) { isDup = true; break; }
+                        }
+                        if (!isDup) expenses.push(oe);
+                    }
+                    localStorage.removeItem('saigon2026_expenses');
+                } else {
+                    expenses = DEFAULT_EXPENSES.slice();
+                }
                 saveExpenses();
             }
 
