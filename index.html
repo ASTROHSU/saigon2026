@@ -1685,7 +1685,7 @@
                         <div style="font-size:0.95rem;font-weight:700;color:var(--c-text-muted);font-family:'Outfit',sans-serif;" id="vnd-actual">—</div>
                     </div>
                 </div>
-                <p class="converter-rate-note" id="rate-note">匯率參考：1 TWD ≈ 770 VND（固定參考值，實際以換匯當日為準）</p>
+                <p class="converter-rate-note" id="rate-note">匯率參考：1 TWD ≈ 825 VND</p>
 
                 <!-- Expense Tracker -->
                 <div class="expense-category-row" id="expense-category-row" style="display:none;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem;justify-content:center;">
@@ -3240,7 +3240,7 @@
 
     <script>
         // Currency Converter (VND → TWD)
-        const VND_PER_TWD = 770; // 1 TWD ≈ 770 VND
+        const VND_PER_TWD = 825; // 1 TWD ≈ 825 VND
 
         function formatVND(n) {
             if (n >= 1000000) return (n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1) + ' 百萬 VND';
@@ -3563,7 +3563,10 @@
                         + '<span class="expense-item-memo">' + e.memo + '</span>'
                         + '<span style="font-size:0.75rem;color:var(--c-text-muted);">' + timeStr + '</span>'
                         + '</div>'
+                        + '<div style="text-align:right;flex-shrink:0;">'
                         + '<span class="expense-item-amount">NT$ ' + e.twd.toLocaleString() + '</span>'
+                        + '<div style="font-size:0.7rem;color:var(--c-text-muted);">' + e.vnd.toLocaleString() + ' ₫</div>'
+                        + '</div>'
                         + '</div>';
                 }
                 container.innerHTML = html;
