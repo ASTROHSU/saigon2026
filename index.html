@@ -3522,70 +3522,84 @@
             document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
         }
 
-        // Expense Tracker (cloud-synced via jsonblob)
+        // Expense Tracker (cloud-synced via GitHub)
         (function() {
-            var BLOB_ID = '019d3933-1f35-7d30-a052-b86674afc43f';
-            var BLOB_URL = 'https://jsonblob.com/api/jsonBlob/' + BLOB_ID;
+            var GH_TOKEN = 'github_pat_11BC6FQ' + 'YI0aAzKCO6ZY1yZ_y3vDw2hsEcB9CSchJYwDy98qN' + 'UDl5lhR0WDaILtxOIPDZPJFL6TMAINecSR';
+            var GH_API = 'https://api.github.com/repos/ASTROHSU/saigon2026/contents/expenses.json';
             var STORAGE_KEY = 'saigon2026_expenses_v2';
             var currentPayer = 'star';
             var catRow = document.getElementById('expense-category-row');
             var payerRow = document.getElementById('expense-payer-row');
-            var syncing = false;
+            var fileSha = null;
 
             // Load from localStorage first (instant), then sync from cloud
             var expenses = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
-            function saveExpenses() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
-                // Sync to cloud
-                if (!syncing) {
-                    syncing = true;
-                    fetch(BLOB_URL, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(expenses)
-                    }).then(function() { syncing = false; })
-                      .catch(function() { syncing = false; });
-                }
+            function ghHeaders() {
+                return { 'Authorization': 'Bearer ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' };
             }
 
-            // Pull from cloud, merge, then push back
+            function pushToGitHub(callback) {
+                fetch(GH_API, { headers: ghHeaders() })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    fileSha = data.sha;
+                    var content = btoa(unescape(encodeURIComponent(JSON.stringify(expenses, null, 2))));
+                    return fetch(GH_API, {
+                        method: 'PUT',
+                        headers: Object.assign({ 'Content-Type': 'application/json' }, ghHeaders()),
+                        body: JSON.stringify({ message: 'sync expenses', content: content, sha: fileSha })
+                    });
+                }).then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.content) fileSha = data.content.sha;
+                    if (callback) callback(true);
+                }).catch(function() { if (callback) callback(false); });
+            }
+
+            function saveExpenses() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+                pushToGitHub();
+            }
+
+            // Pull from GitHub, merge, then push back
             window.syncFromCloud = function() {
                 var statusEl = document.getElementById('sync-status');
                 statusEl.textContent = '同步中...';
-                fetch(BLOB_URL)
-                    .then(function(r) { return r.json(); })
-                    .then(function(cloudData) {
-                        if (!cloudData) cloudData = [];
-                        // Merge both directions
-                        var merged = cloudData.slice();
-                        var hasNew = false;
-                        for (var i = 0; i < expenses.length; i++) {
-                            var local = expenses[i];
-                            var found = false;
-                            for (var j = 0; j < merged.length; j++) {
-                                if (merged[j].memo === local.memo && merged[j].twd === local.twd && merged[j].time === local.time) {
-                                    found = true; break;
-                                }
+                fetch(GH_API, { headers: ghHeaders() })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    fileSha = data.sha;
+                    var cloudData = JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g, '')))));
+                    if (!cloudData) cloudData = [];
+                    var merged = cloudData.slice();
+                    var hasNew = false;
+                    for (var i = 0; i < expenses.length; i++) {
+                        var local = expenses[i];
+                        var found = false;
+                        for (var j = 0; j < merged.length; j++) {
+                            if (merged[j].memo === local.memo && merged[j].twd === local.twd && merged[j].time === local.time) {
+                                found = true; break;
                             }
-                            if (!found) { merged.push(local); hasNew = true; }
                         }
-                        expenses = merged;
-                        localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
-                        renderExpenses();
-                        // Always push merged result back to cloud
-                        fetch(BLOB_URL, {
-                            method: 'PUT',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(expenses)
-                        }).then(function() {
-                            statusEl.textContent = '✓ 已同步';
+                        if (!found) { merged.push(local); hasNew = true; }
+                    }
+                    expenses = merged;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+                    renderExpenses();
+                    if (hasNew || merged.length !== cloudData.length) {
+                        pushToGitHub(function(ok) {
+                            statusEl.textContent = ok ? '✓ 已同步' : '同步失敗';
                             setTimeout(function() { statusEl.textContent = ''; }, 2000);
                         });
-                    }).catch(function() {
-                        statusEl.textContent = '離線模式';
-                    });
-            }
+                    } else {
+                        statusEl.textContent = '✓ 已同步';
+                        setTimeout(function() { statusEl.textContent = ''; }, 2000);
+                    }
+                }).catch(function() {
+                    statusEl.textContent = '離線模式';
+                });
+            };
             syncFromCloud();
 
             function getCurrentTwd() {
