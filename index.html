@@ -1438,171 +1438,18 @@
             margin: 0.6rem auto 0;
         }
 
-        /* Budget Receipt (collapsible details) */
-        .budget-details {
-            margin-top: 1rem;
-            border-radius: 12px;
-            overflow: hidden;
+        /* Expense Details (collapsible) */
+        .expense-details {
+            margin-top: 0.75rem;
         }
 
-        .budget-details summary {
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--c-text-muted);
-            padding: 0.6rem 0;
+        .expense-details summary {
             list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            justify-content: center;
+            cursor: pointer;
         }
 
-        .budget-details summary::-webkit-details-marker { display: none; }
-        .budget-details summary::marker { display: none; content: ''; }
-
-        .budget-details summary .arrow {
-            transition: transform 0.3s ease;
-            font-size: 0.7rem;
-        }
-
-        .budget-details[open] summary .arrow {
-            transform: rotate(180deg);
-        }
-
-        .budget-receipt {
-            background: #FFFDF5;
-            width: 100%;
-            border-radius: 4px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            font-family: 'Outfit', 'Noto Sans TC', monospace;
-            border: 2px dashed #D1D5DB;
-        }
-
-        .budget-receipt-header {
-            text-align: center;
-            padding: 1.5rem 1.5rem 1rem;
-            border-bottom: 2px dashed #E5E7EB;
-        }
-
-        .budget-receipt-header h3 {
-            font-size: 1.1rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--c-text);
-        }
-
-        .budget-receipt-header .budget-subtitle {
-            font-size: 0.75rem;
-            color: var(--c-text-muted);
-            margin-top: 0.3rem;
-        }
-
-        .budget-receipt-header .budget-secret {
-            font-size: 0.65rem;
-            background: #1F2937;
-            color: #9CA3AF;
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 3px;
-            margin-top: 0.5rem;
-            letter-spacing: 1px;
-        }
-
-        .budget-receipt-body {
-            padding: 1rem 1.5rem;
-            overflow-y: auto;
-            flex: 1;
-        }
-
-        .budget-day {
-            margin-bottom: 1rem;
-        }
-
-        .budget-day-title {
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--c-primary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.4rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 1px solid #F3F4F6;
-        }
-
-        .budget-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0.2rem 0;
-            font-size: 0.82rem;
-            color: var(--c-text);
-        }
-
-        .budget-row .budget-item {
-            flex: 1;
-            padding-right: 0.5rem;
-        }
-
-        .budget-row .budget-price {
-            font-weight: 600;
-            white-space: nowrap;
-            font-variant-numeric: tabular-nums;
-            text-align: right;
-            min-width: 70px;
-        }
-
-        .budget-row.budget-sub {
-            font-size: 0.75rem;
-            color: var(--c-text-muted);
-            padding-left: 0.75rem;
-        }
-
-        .budget-row.budget-subtotal {
-            border-top: 1px dashed #E5E7EB;
-            margin-top: 0.3rem;
-            padding-top: 0.3rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        .budget-receipt-footer {
-            border-top: 2px dashed #E5E7EB;
-            padding: 1rem 1.5rem 1.25rem;
-            text-align: center;
-        }
-
-        .budget-total-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: var(--c-text);
-            margin-bottom: 0.5rem;
-        }
-
-        .budget-total-row .budget-total-price {
-            color: var(--c-primary);
-        }
-
-        .budget-note {
-            font-size: 0.7rem;
-            color: var(--c-text-muted);
-            line-height: 1.5;
-        }
-
-        .budget-details[open] .budget-receipt {
-            animation: budgetSlideDown 0.3s ease;
-        }
-
-        @keyframes budgetSlideDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .expense-details summary::-webkit-details-marker { display: none; }
+        .expense-details summary::marker { display: none; content: ''; }
 
         /* Expired Days Styling */
         .backup-day-group.backup-day-expired {
@@ -1728,32 +1575,17 @@
                     <button class="expense-cat-btn" onclick="addExpenseWithCategory('💰 其他')">💰 其他</button>
                 </div>
 
-                <div class="expense-list" id="expense-list">
-                    <div class="expense-list-header">
+                <details class="expense-details" id="expense-list">
+                    <summary class="expense-list-header">
                         <span class="expense-list-title"><i class="fas fa-receipt"></i> 旅途花費 <span id="sync-status" style="font-size:0.7rem;font-weight:400;color:var(--c-text-muted);"></span></span>
                         <span>
-                            <button onclick="syncFromCloud()" style="background:none;border:1px solid var(--c-border);border-radius:4px;padding:0.2rem 0.5rem;font-size:0.75rem;cursor:pointer;margin-right:0.3rem;"><i class="fas fa-sync-alt"></i></button>
+                            <button onclick="event.stopPropagation();syncFromCloud()" style="background:none;border:1px solid var(--c-border);border-radius:4px;padding:0.2rem 0.5rem;font-size:0.75rem;cursor:pointer;margin-right:0.3rem;"><i class="fas fa-sync-alt"></i></button>
                             <span class="expense-list-total" id="expense-total">NT$ 0</span>
                         </span>
-                    </div>
+                    </summary>
                     <div class="expense-payer-summary" id="expense-payer-summary"></div>
                     <div id="expense-items">
                         <div class="expense-empty">還沒有記帳，換算後選誰付的、點 emoji 即可記帳</div>
-                    </div>
-                </div>
-
-                <!-- Budget Estimate (collapsible) -->
-                <details class="budget-details">
-                    <summary>
-                        <i class="fas fa-receipt"></i> 蜜月預估消費表 <span class="arrow">▼</span>
-                    </summary>
-                    <div class="budget-receipt">
-                        <div class="budget-receipt-header">
-                            <h3>Saigon 2026</h3>
-                            <div class="budget-subtitle">蜜月預估消費表 · 兩人份</div>
-                        </div>
-                        <div class="budget-receipt-body" id="budget-receipt-body-inline"></div>
-                        <div class="budget-receipt-footer" id="budget-receipt-footer-inline"></div>
                     </div>
                 </details>
             </div>
@@ -3039,199 +2871,6 @@
         </div>
     </div>
 
-    <!-- Budget data (hidden, cloned into details on load) -->
-    <template id="budget-data">
-            <div class="budget-receipt-body">
-
-                <!-- Day 1 -->
-                <div class="budget-day">
-                    <div class="budget-day-title">Day 1 · 3/29 抵達日</div>
-                    <div class="budget-row">
-                        <span class="budget-item">Le Corto Brunch ×2</span>
-                        <span class="budget-price">~1,920</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Bánh Mì Huynh Hoa ×2</span>
-                        <span class="budget-price">~130</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Miu Miu Spa 90min ×2</span>
-                        <span class="budget-price">~1,280</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">Grab 機場→飯店</span>
-                        <span class="budget-price">~260</span>
-                    </div>
-                    <div class="budget-row budget-subtotal">
-                        <span class="budget-item">小計</span>
-                        <span class="budget-price">~3,590</span>
-                    </div>
-                </div>
-
-                <!-- Day 2 -->
-                <div class="budget-day">
-                    <div class="budget-day-title">Day 2 · 3/30 美食日</div>
-                    <div class="budget-row">
-                        <span class="budget-item">鴻發粿條早餐 ×2</span>
-                        <span class="budget-price">~270</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Saigon Coffee Roastery ×2</span>
-                        <span class="budget-price">~230</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Quán Thuý 94 螃蟹冬粉 ×2</span>
-                        <span class="budget-price">~280</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Pizza 4P's 晚餐 ×2</span>
-                        <span class="budget-price">~1,025</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">Grab 移動 ×2-3 趟</span>
-                        <span class="budget-price">~130</span>
-                    </div>
-                    <div class="budget-row budget-subtotal">
-                        <span class="budget-item">小計</span>
-                        <span class="budget-price">~1,935</span>
-                    </div>
-                </div>
-
-                <!-- Day 3 -->
-                <div class="budget-day">
-                    <div class="budget-day-title">Day 3 · 3/31 在地日</div>
-                    <div class="budget-row">
-                        <span class="budget-item">Bánh Mì Hồng Hoa ×2</span>
-                        <span class="budget-price">~130</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">The Workshop Coffee ×2</span>
-                        <span class="budget-price">~205</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Nhà Hàng Ngon 午餐 ×2</span>
-                        <span class="budget-price">~640</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Cocotte 法式晚餐 ×2</span>
-                        <span class="budget-price">~1,025</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">越式洗頭 Quê Một Cục ×2（105min 完整儀式）</span>
-                        <span class="budget-price">~1,172</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">Grab 移動 ×2-3 趟</span>
-                        <span class="budget-price">~190</span>
-                    </div>
-                    <div class="budget-row budget-subtotal">
-                        <span class="budget-item">小計</span>
-                        <span class="budget-price">~3,362</span>
-                    </div>
-                </div>
-
-                <!-- Day 4 -->
-                <div class="budget-day">
-                    <div class="budget-day-title">Day 4 · 4/1 深度日</div>
-                    <div class="budget-row">
-                        <span class="budget-item">Cơm Tấm Ba Ghiền 早餐 ×2</span>
-                        <span class="budget-price">~310</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Bosgaurus Coffee ×2</span>
-                        <span class="budget-price">~230</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">午餐（Landmark 81 區域）×2</span>
-                        <span class="budget-price">~510</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Miu Miu Spa 90min ×2</span>
-                        <span class="budget-price">~1,280</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">老賴羊肉火鍋 ×2</span>
-                        <span class="budget-price">~770</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">Grab 移動 ×3-4 趟</span>
-                        <span class="budget-price">~260</span>
-                    </div>
-                    <div class="budget-row budget-subtotal">
-                        <span class="budget-item">小計</span>
-                        <span class="budget-price">~3,360</span>
-                    </div>
-                </div>
-
-                <!-- Day 5 -->
-                <div class="budget-day">
-                    <div class="budget-day-title">Day 5 · 4/2 回家日</div>
-                    <div class="budget-row">
-                        <span class="budget-item">海霸王街早餐 ×2</span>
-                        <span class="budget-price">~180</span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">Bếp Mẹ Ỉn 午餐 ×2</span>
-                        <span class="budget-price">~640</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">Grab 移動 + 飯店→機場</span>
-                        <span class="budget-price">~390</span>
-                    </div>
-                    <div class="budget-row budget-subtotal">
-                        <span class="budget-item">小計</span>
-                        <span class="budget-price">~1,210</span>
-                    </div>
-                </div>
-
-                <!-- 已付款固定費用 -->
-                <div class="budget-day">
-                    <div class="budget-day-title" style="color: var(--c-success);">✓ 已付款 · 固定費用</div>
-                    <div class="budget-row">
-                        <span class="budget-item">星宇航空 JX711+JX714 ×2人</span>
-                        <span class="budget-price">15,525</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">票價 9,350 + 稅費 6,176 - Trip Coins 1</span>
-                        <span class="budget-price"></span>
-                    </div>
-                    <div class="budget-row">
-                        <span class="budget-item">M Village Signature ×4晚</span>
-                        <span class="budget-price">13,221</span>
-                    </div>
-                    <div class="budget-row budget-sub">
-                        <span class="budget-item">房價 11,659 + 稅費 1,562</span>
-                        <span class="budget-price"></span>
-                    </div>
-                    <div class="budget-row budget-subtotal" style="color: var(--c-success);">
-                        <span class="budget-item">已付款小計</span>
-                        <span class="budget-price">28,746</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="budget-receipt-footer">
-                <div class="budget-total-row" style="font-size: 0.85rem; font-weight: 600; color: var(--c-text-muted); margin-bottom: 0.25rem;">
-                    <span>已付款（機票＋住宿）</span>
-                    <span>28,746</span>
-                </div>
-                <div class="budget-total-row" style="font-size: 0.85rem; font-weight: 600; color: var(--c-text-muted); margin-bottom: 0.25rem;">
-                    <span>當地預估（餐飲＋SPA＋交通）</span>
-                    <span>~11,857</span>
-                </div>
-                <div style="border-top: 2px solid var(--c-text); margin: 0.5rem 0; padding-top: 0.5rem;">
-                    <div class="budget-total-row">
-                        <span>整趟蜜月總預估</span>
-                        <span class="budget-total-price">~42,203</span>
-                    </div>
-                </div>
-                <div class="budget-note">
-                    以上皆為兩人份 · 匯率 1 TWD ≈ 780 VND<br>
-                    當地消費抓寬一點：~15,000 以內安全<br>
-                    整趟含購物零食抓 <strong>45,000</strong> 很充裕
-                </div>
-            </div>
-    </template>
 
     <!-- Footer -->
     <footer>
@@ -3448,17 +3087,7 @@
             });
         }
 
-        // Budget Receipt — clone template data into details element
-        (function() {
-            var tmpl = document.getElementById('budget-data');
-            if (!tmpl) return;
-            var body = tmpl.content.querySelector('.budget-receipt-body');
-            var footer = tmpl.content.querySelector('.budget-receipt-footer');
-            var targetBody = document.getElementById('budget-receipt-body-inline');
-            var targetFooter = document.getElementById('budget-receipt-footer-inline');
-            if (body && targetBody) targetBody.innerHTML = body.innerHTML;
-            if (footer && targetFooter) targetFooter.innerHTML = footer.innerHTML;
-        })();
+        // (Budget estimate removed)
 
         // Expense Tracker (cloud-synced via GitHub)
         (function() {
