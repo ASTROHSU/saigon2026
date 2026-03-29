@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Saigon 2026">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -1736,8 +1737,11 @@
 
                 <div class="expense-list" id="expense-list">
                     <div class="expense-list-header">
-                        <span class="expense-list-title"><i class="fas fa-receipt"></i> 旅途花費</span>
-                        <span class="expense-list-total" id="expense-total">NT$ 0</span>
+                        <span class="expense-list-title"><i class="fas fa-receipt"></i> 旅途花費 <span id="sync-status" style="font-size:0.7rem;font-weight:400;color:var(--c-text-muted);"></span></span>
+                        <span>
+                            <button onclick="syncFromCloud()" style="background:none;border:1px solid var(--c-border);border-radius:4px;padding:0.2rem 0.5rem;font-size:0.75rem;cursor:pointer;margin-right:0.3rem;"><i class="fas fa-sync-alt"></i></button>
+                            <span class="expense-list-total" id="expense-total">NT$ 0</span>
+                        </span>
                     </div>
                     <div class="expense-payer-summary" id="expense-payer-summary"></div>
                     <div id="expense-items">
@@ -3545,8 +3549,10 @@
                 }
             }
 
-            // Pull from cloud on page load, merge, then push back
-            function syncFromCloud() {
+            // Pull from cloud, merge, then push back
+            window.syncFromCloud = function() {
+                var statusEl = document.getElementById('sync-status');
+                statusEl.textContent = '同步中...';
                 fetch(BLOB_URL)
                     .then(function(r) { return r.json(); })
                     .then(function(cloudData) {
@@ -3567,15 +3573,18 @@
                         expenses = merged;
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
                         renderExpenses();
-                        // Push merged result back to cloud if we had local-only entries
-                        if (hasNew || merged.length !== cloudData.length) {
-                            fetch(BLOB_URL, {
-                                method: 'PUT',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(expenses)
-                            });
-                        }
-                    }).catch(function() { /* offline, use local */ });
+                        // Always push merged result back to cloud
+                        fetch(BLOB_URL, {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(expenses)
+                        }).then(function() {
+                            statusEl.textContent = '✓ 已同步';
+                            setTimeout(function() { statusEl.textContent = ''; }, 2000);
+                        });
+                    }).catch(function() {
+                        statusEl.textContent = '離線模式';
+                    });
             }
             syncFromCloud();
 
