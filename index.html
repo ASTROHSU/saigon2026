@@ -245,6 +245,118 @@
             color: var(--c-warning);
         }
 
+        /* Currency Converter Section */
+        .currency-section {
+            background: linear-gradient(135deg, #FEF9C3 0%, #FFF8E1 100%);
+            border: 2px solid #F59E0B;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .currency-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #B45309;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .currency-input-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .currency-input {
+            flex: 1;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            padding: 0.75rem 1rem;
+            border: 2px solid #F59E0B;
+            border-radius: var(--radius-sm);
+            background: white;
+            color: var(--c-text);
+            text-align: right;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .currency-input:focus {
+            border-color: #D97706;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .currency-input::placeholder {
+            color: #D4A574;
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        .currency-suffix {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #92400E;
+            white-space: nowrap;
+        }
+
+        .currency-result {
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .currency-result-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            color: var(--c-primary);
+        }
+
+        .currency-result-label {
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .currency-hint {
+            font-size: 0.8rem;
+            color: #92400E;
+            margin-top: 0.75rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .currency-presets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .currency-preset {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid #F59E0B;
+            background: white;
+            color: #92400E;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .currency-preset:hover {
+            background: #F59E0B;
+            color: white;
+        }
+
         /* Todo Checklist Section */
         .todo-section {
             background: var(--c-glass);
@@ -1456,6 +1568,28 @@
                     <strong>住宿</strong>
                     <span>Signature by M Village, District 3</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- Currency Converter Section -->
+        <section class="currency-section">
+            <h3><i class="fas fa-money-bill-wave"></i> 越南盾換算台幣</h3>
+            <div class="currency-input-group">
+                <input type="text" inputmode="numeric" class="currency-input" id="vnd-input" placeholder="輸入金額">
+                <div class="currency-suffix">× 1,000 VND</div>
+            </div>
+            <div class="currency-result">
+                <div class="currency-result-value" id="twd-result">NT$ 0</div>
+                <div class="currency-result-label">約等於台幣（匯率 1 TWD ≈ 822 VND）</div>
+            </div>
+            <div class="currency-hint">輸入前面幾位數就好，自動乘以 1,000。例如輸入 50 = 50,000 VND ≈ NT$61</div>
+            <div class="currency-presets">
+                <button class="currency-preset" data-vnd="30">咖啡 30k</button>
+                <button class="currency-preset" data-vnd="50">河粉 50k</button>
+                <button class="currency-preset" data-vnd="100">小吃 100k</button>
+                <button class="currency-preset" data-vnd="200">餐廳 200k</button>
+                <button class="currency-preset" data-vnd="500">按摩 500k</button>
+                <button class="currency-preset" data-vnd="1000">大餐 1000k</button>
             </div>
         </section>
 
@@ -3166,6 +3300,37 @@
             overlay.classList.toggle('open');
             document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
         }
+
+        // Currency Converter
+        (function() {
+            const RATE = 822; // 1 TWD ≈ 822 VND
+            const input = document.getElementById('vnd-input');
+            const result = document.getElementById('twd-result');
+
+            function convert(val) {
+                const num = parseFloat(val);
+                if (isNaN(num) || num === 0) {
+                    result.textContent = 'NT$ 0';
+                    return;
+                }
+                const vnd = num * 1000;
+                const twd = vnd / RATE;
+                result.textContent = 'NT$ ' + Math.round(twd).toLocaleString();
+            }
+
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d.]/g, '');
+                convert(this.value);
+            });
+
+            document.querySelectorAll('.currency-preset').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var val = this.getAttribute('data-vnd');
+                    input.value = val;
+                    convert(val);
+                });
+            });
+        })();
     </script>
 </body>
 </html>
