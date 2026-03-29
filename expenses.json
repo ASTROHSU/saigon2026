@@ -1,0 +1,8 @@
+[
+  {"memo":"✈️ 機票","twd":15525,"vnd":0,"payer":"star","time":"2026-02-20T00:00:00.000Z","currency":"TWD"},
+  {"memo":"📋 簽證","twd":1640,"vnd":0,"payer":"star","time":"2026-03-11T00:00:00.000Z","currency":"TWD"},
+  {"memo":"🏨 住宿","twd":13221,"vnd":0,"payer":"astro","time":"2026-03-11T00:00:00.000Z","currency":"TWD"},
+  {"memo":"💆 按摩","twd":1084,"vnd":0,"payer":"astro","time":"2026-03-22T00:00:00.000Z","currency":"TWD"},
+  {"memo":"🛡️ 保險","twd":990,"vnd":0,"payer":"star","time":"2026-03-28T00:00:00.000Z","currency":"TWD"},
+  {"memo":"🚐 機場接送","twd":920,"vnd":0,"payer":"star","time":"2026-03-28T00:00:00.000Z","currency":"TWD"}
+]
