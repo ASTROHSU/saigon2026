@@ -1438,46 +1438,47 @@
             margin: 0.6rem auto 0;
         }
 
-        /* Secret Budget Receipt */
-        .budget-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 500;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+        /* Budget Receipt (collapsible details) */
+        .budget-details {
+            margin-top: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .budget-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
+        .budget-details summary {
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--c-text-muted);
+            padding: 0.6rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .budget-details summary::-webkit-details-marker { display: none; }
+        .budget-details summary::marker { display: none; content: ''; }
+
+        .budget-details summary .arrow {
+            transition: transform 0.3s ease;
+            font-size: 0.7rem;
+        }
+
+        .budget-details[open] summary .arrow {
+            transform: rotate(180deg);
         }
 
         .budget-receipt {
             background: #FFFDF5;
-            max-width: 420px;
             width: 100%;
-            max-height: 85vh;
             border-radius: 4px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            transform: scale(0.9) translateY(20px);
-            opacity: 0;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             font-family: 'Outfit', 'Noto Sans TC', monospace;
             border: 2px dashed #D1D5DB;
-        }
-
-        .budget-overlay.open .budget-receipt {
-            transform: scale(1) translateY(0);
-            opacity: 1;
         }
 
         .budget-receipt-header {
@@ -1594,21 +1595,13 @@
             line-height: 1.5;
         }
 
-        .budget-close-btn {
-            margin-top: 0.75rem;
-            background: none;
-            border: 1px solid var(--c-border);
-            padding: 0.4rem 1.2rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--c-text-muted);
-            cursor: pointer;
-            transition: var(--transition);
+        .budget-details[open] .budget-receipt {
+            animation: budgetSlideDown 0.3s ease;
         }
 
-        .budget-close-btn:hover {
-            border-color: var(--c-primary);
-            color: var(--c-primary);
+        @keyframes budgetSlideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Expired Days Styling */
@@ -1748,6 +1741,21 @@
                         <div class="expense-empty">還沒有記帳，換算後選誰付的、點 emoji 即可記帳</div>
                     </div>
                 </div>
+
+                <!-- Budget Estimate (collapsible) -->
+                <details class="budget-details">
+                    <summary>
+                        <i class="fas fa-receipt"></i> 蜜月預估消費表 <span class="arrow">▼</span>
+                    </summary>
+                    <div class="budget-receipt">
+                        <div class="budget-receipt-header">
+                            <h3>Saigon 2026</h3>
+                            <div class="budget-subtitle">蜜月預估消費表 · 兩人份</div>
+                        </div>
+                        <div class="budget-receipt-body" id="budget-receipt-body-inline"></div>
+                        <div class="budget-receipt-footer" id="budget-receipt-footer-inline"></div>
+                    </div>
+                </details>
             </div>
         </section>
 
@@ -1931,14 +1939,6 @@
                     <p>抵達與奢華開場</p>
                 </div>
                 <div class="events-container">
-                    <!-- Highlight Card -->
-                    <div class="highlight-card highlight-card-day1">
-                        <div class="highlight-icon">✈️</div>
-                        <h3 class="highlight-title">蜜月啟程</h3>
-                        <p class="highlight-description">降落西貢，用一頓法式奢華 Brunch 開場。下午在飯店周邊散步探索，晚上用芳療按摩洗去旅途疲憊。</p>
-                        <span class="highlight-tag">抵達 × Brunch × SPA</span>
-                    </div>
-
                     <!-- Activity 1 -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -2044,14 +2044,6 @@
                     <p>米其林美食巡禮</p>
                 </div>
                 <div class="events-container">
-                    <!-- Highlight Card -->
-                    <div class="highlight-card highlight-card-day2">
-                        <div class="highlight-icon">🍜</div>
-                        <h3 class="highlight-title">在地美食日</h3>
-                        <p class="highlight-description">第一個完整的西貢早晨。米其林粿條開場，精品咖啡配螃蟹冬粉當午餐，下午到第一郡逛逛老城，晚上窯烤披薩收尾。</p>
-                        <span class="highlight-tag">粿條 × 螃蟹冬粉 × 披薩</span>
-                    </div>
-
                     <!-- Breakfast: Hủ Tiếu Hồng Phát -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -2186,14 +2178,6 @@
                     <p>在地味覺與放鬆</p>
                 </div>
                 <div class="events-container">
-                    <!-- Highlight Card -->
-                    <div class="highlight-card highlight-card-day3">
-                        <div class="highlight-icon">🌸</div>
-                        <h3 class="highlight-title">在地生活日</h3>
-                        <p class="highlight-description">一早逛新定市場吃在地早餐，走去粉紅教堂拍照，再到精品咖啡館坐一個下午。晚上回到 Cocotte，重溫我們的旅行起點。</p>
-                        <span class="highlight-tag">市場 × 教堂 × 咖啡 × Cocotte</span>
-                    </div>
-
                     <!-- Tân Định Market -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -2391,14 +2375,6 @@
                     <p>深度體驗日（可走遠一點的一天）</p>
                 </div>
                 <div class="events-container">
-                    <!-- Highlight Card -->
-                    <div class="highlight-card highlight-card-day4">
-                        <div class="highlight-icon">🌅</div>
-                        <h3 class="highlight-title">走遠一點的一天</h3>
-                        <p class="highlight-description">經典碎米飯開啟早晨，搭 Grab 到河畔別墅喝咖啡看西貢河。傍晚第二次芳療按摩，讓身體徹底放鬆，晚上來鍋越式羊肉爐配啤酒。</p>
-                        <span class="highlight-tag">碎米飯 × 河畔咖啡 × SPA × 羊肉爐</span>
-                    </div>
-
                     <!-- Breakfast: Cơm Tấm Ba Ghiền -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -2524,14 +2500,6 @@
                     <p>慢慢收尾</p>
                 </div>
                 <div class="events-container">
-                    <!-- Highlight Card -->
-                    <div class="highlight-card highlight-card-day5">
-                        <div class="highlight-icon">🌄</div>
-                        <h3 class="highlight-title">慢慢說再見</h3>
-                        <p class="highlight-description">最後一個早晨，在飯店附近的咖啡街悠閒吃早餐，公園散步一圈，再用米其林家常菜當最後午餐，帶著滿足收拾行囊回家。</p>
-                        <span class="highlight-tag">咖啡街早餐 × 公園散步 × 家常菜午餐</span>
-                    </div>
-
                     <!-- Breakfast: 海霸王街 -->
                     <div class="activity-card">
                         <div class="activity-time">
@@ -3068,13 +3036,8 @@
         </div>
     </div>
 
-    <!-- Secret Budget Receipt -->
-    <div class="budget-overlay" onclick="toggleBudget(event)">
-        <div class="budget-receipt" onclick="event.stopPropagation()">
-            <div class="budget-receipt-header">
-                <h3>Saigon 2026</h3>
-                <div class="budget-subtitle">蜜月預估消費表 · 兩人份</div>
-            </div>
+    <!-- Budget data (hidden, cloned into details on load) -->
+    <template id="budget-data">
             <div class="budget-receipt-body">
 
                 <!-- Day 1 -->
@@ -3264,10 +3227,8 @@
                     當地消費抓寬一點：~15,000 以內安全<br>
                     整趟含購物零食抓 <strong>45,000</strong> 很充裕
                 </div>
-                <button class="budget-close-btn" onclick="toggleBudget()">收好</button>
             </div>
-        </div>
-    </div>
+    </template>
 
     <!-- Footer -->
     <footer>
@@ -3484,43 +3445,17 @@
             });
         }
 
-        // Secret Budget Receipt - long press on countdown for 1.5s
-        let budgetTimer = null;
-        const countdownEl = document.getElementById('countdown');
-
-        function startBudgetPress(e) {
-            e.preventDefault();
-            budgetTimer = setTimeout(() => {
-                toggleBudget();
-                budgetTimer = null;
-            }, 1500);
-        }
-
-        function cancelBudgetPress() {
-            if (budgetTimer) {
-                clearTimeout(budgetTimer);
-                budgetTimer = null;
-            }
-        }
-
-        if (countdownEl) {
-            countdownEl.style.cursor = 'default';
-            countdownEl.style.webkitUserSelect = 'none';
-            countdownEl.style.userSelect = 'none';
-            countdownEl.addEventListener('mousedown', startBudgetPress);
-            countdownEl.addEventListener('mouseup', cancelBudgetPress);
-            countdownEl.addEventListener('mouseleave', cancelBudgetPress);
-            countdownEl.addEventListener('touchstart', startBudgetPress, { passive: false });
-            countdownEl.addEventListener('touchend', cancelBudgetPress);
-            countdownEl.addEventListener('touchcancel', cancelBudgetPress);
-        }
-
-        function toggleBudget(e) {
-            if (e) e.stopPropagation();
-            const overlay = document.querySelector('.budget-overlay');
-            overlay.classList.toggle('open');
-            document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
-        }
+        // Budget Receipt — clone template data into details element
+        (function() {
+            var tmpl = document.getElementById('budget-data');
+            if (!tmpl) return;
+            var body = tmpl.content.querySelector('.budget-receipt-body');
+            var footer = tmpl.content.querySelector('.budget-receipt-footer');
+            var targetBody = document.getElementById('budget-receipt-body-inline');
+            var targetFooter = document.getElementById('budget-receipt-footer-inline');
+            if (body && targetBody) targetBody.innerHTML = body.innerHTML;
+            if (footer && targetFooter) targetFooter.innerHTML = footer.innerHTML;
+        })();
 
         // Expense Tracker (cloud-synced via GitHub)
         (function() {
