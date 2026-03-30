@@ -174,5 +174,13 @@
     "payer": "star",
     "time": "2026-03-30T11:02:10.407Z",
     "currency": "VND"
+  },
+  {
+    "memo": "🧃 飲料",
+    "twd": 65,
+    "vnd": 54000,
+    "payer": "star",
+    "time": "2026-03-30T13:43:32.016Z",
+    "currency": "VND"
   }
 ]
