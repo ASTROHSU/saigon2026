@@ -238,5 +238,13 @@
     "payer": "star",
     "time": "2026-03-31T10:29:57.475Z",
     "currency": "VND"
+  },
+  {
+    "memo": "🛍️ 購物",
+    "twd": 121,
+    "vnd": 100000,
+    "payer": "star",
+    "time": "2026-03-31T10:30:13.402Z",
+    "currency": "VND"
   }
 ]
