@@ -238,13 +238,5 @@
     "payer": "star",
     "time": "2026-03-31T10:29:57.475Z",
     "currency": "VND"
-  },
-  {
-    "memo": "💰 其他",
-    "twd": 121,
-    "vnd": 100000,
-    "payer": "star",
-    "time": "2026-03-31T10:30:04.716Z",
-    "currency": "VND"
   }
 ]
