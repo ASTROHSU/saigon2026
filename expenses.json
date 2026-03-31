@@ -256,14 +256,6 @@
     "currency": "VND"
   },
   {
-    "memo": "🧃 飲料",
-    "twd": 91,
-    "vnd": 75000,
-    "payer": "astro",
-    "time": "2026-03-31T12:12:09.873Z",
-    "currency": "VND"
-  },
-  {
     "memo": "🛵 交通",
     "twd": 29,
     "vnd": 24000,
