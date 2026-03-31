@@ -262,5 +262,13 @@
     "payer": "astro",
     "time": "2026-03-31T12:12:09.873Z",
     "currency": "VND"
+  },
+  {
+    "memo": "🛵 交通",
+    "twd": 29,
+    "vnd": 24000,
+    "payer": "star",
+    "time": "2026-03-31T12:33:32.983Z",
+    "currency": "VND"
   }
 ]
