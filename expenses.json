@@ -358,5 +358,13 @@
     "payer": "star",
     "time": "2026-04-01T13:48:48.697Z",
     "currency": "VND"
+  },
+  {
+    "memo": "🍽️ 餐廳",
+    "twd": 509,
+    "vnd": 420000,
+    "payer": "star",
+    "time": "2026-04-01T14:39:42.289Z",
+    "currency": "VND"
   }
 ]
