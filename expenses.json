@@ -398,5 +398,13 @@
     "payer": "star",
     "time": "2026-04-02T07:06:45.371Z",
     "currency": "VND"
+  },
+  {
+    "memo": "🛵 交通",
+    "twd": 81,
+    "vnd": 67000,
+    "payer": "star",
+    "time": "2026-04-02T07:53:27.064Z",
+    "currency": "VND"
   }
 ]
