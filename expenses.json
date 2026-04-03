@@ -406,5 +406,13 @@
     "payer": "star",
     "time": "2026-04-02T08:39:28.171Z",
     "currency": "VND"
+  },
+  {
+    "memo": "☕ 咖啡",
+    "twd": 152,
+    "vnd": 125000,
+    "payer": "star",
+    "time": "2026-04-03T06:29:53.475Z",
+    "currency": "VND"
   }
 ]
